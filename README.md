@@ -129,8 +129,8 @@ This project is open source and available under the [MIT License](LICENSE).
 **M. Wajeeh**  
 Data Analyst | MLOps Engineer | ML Engineer
 
-- GitHub: [@M-Wajeeh](https://github.com/M-Wajeeh)
-- LinkedIn: [M. Wajeeh](#)
+- GitHub: [@M-Wajeeh](https://www.github.com/M-Wajeeh)
+- LinkedIn: [M Wajeeh]((https://www.linkedin.com/in/hassanwajeeh)
 
 ---
 
