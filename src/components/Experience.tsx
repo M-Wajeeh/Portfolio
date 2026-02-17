@@ -35,7 +35,7 @@ const Experience = () => {
                                 <div className="timeline-dot-modern">
                                     <Icon size={16} />
                                 </div>
-                                <div className="timeline-content-modern">
+                                <div className="timeline-content-modern" style={{ position: 'relative' }}>
                                     <div className="content-side-strip"></div>
                                     <div className="content-inner">
                                         <div className="content-header">

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Database, Brain, Code, Cloud } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const Skills = () => {

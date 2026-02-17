@@ -1,30 +1,86 @@
 import {
-    Shield,
     Zap,
     BarChart3,
-    Globe,
     Database,
     Brain,
-    Code,
-    Cloud,
     Award,
     TrendingUp,
     PieChart,
     Settings,
-    Cpu,
     Users,
     Terminal,
     Shirt,
-    Layers
+    Layers,
+    LucideIcon
 } from 'lucide-react';
 
-export const portfolioData = {
+export interface PersonalInfo {
+    name: string;
+    roles: string[];
+    email: string;
+    github: string;
+    linkedin: string;
+    twitter: string;
+    status: string;
+    tagline: string;
+    subTagline: string;
+    bio: string;
+}
+
+export interface Stat {
+    icon: LucideIcon;
+    value: string;
+    label: string;
+    color: string;
+}
+
+export interface SkillCategory {
+    title: string;
+    icon: LucideIcon;
+    skills: string[];
+}
+
+export interface Experience {
+    type: string;
+    title: string;
+    company: string;
+    period: string;
+    description: string;
+    tags: string[];
+}
+
+export interface Project {
+    title: string;
+    category: string;
+    description: string;
+    tags: string[];
+    githubUrl: string;
+    icon: LucideIcon;
+}
+
+export interface PortfolioData {
+    personalInfo: PersonalInfo;
+    stats: Stat[];
+    heroHUD: {
+        processingPower: string;
+        neuralLatency: string;
+        dataVolume: string;
+    };
+    skills: {
+        categories: SkillCategory[];
+        marquee: string[];
+    };
+    experience: Experience[];
+    projects: Project[];
+}
+
+export const portfolioData: PortfolioData = {
     personalInfo: {
-        name: import.meta.env.VITE_USER_NAME || "M. Wajeeh",
+        name: (import.meta as any).env.VITE_USER_NAME || "M. Wajeeh",
         roles: ["Data Analyst", "MLOps Engineer", "ML Engineer"],
-        email: import.meta.env.VITE_USER_EMAIL || "contact@example.com",
-        github: import.meta.env.VITE_USER_GITHUB || "https://github.com/",
-        linkedin: import.meta.env.VITE_USER_LINKEDIN || "https://linkedin.com/in/",
+        email: (import.meta as any).env.VITE_USER_EMAIL || "contact@example.com",
+        github: (import.meta as any).env.VITE_USER_GITHUB || "https://github.com/",
+        linkedin: (import.meta as any).env.VITE_USER_LINKEDIN || "https://linkedin.com/in/",
         twitter: "",
         status: "ACCEPTING PROJECTS",
         tagline: "Engineering intelligent systems that solve real-world problems",
@@ -147,8 +203,16 @@ export const portfolioData = {
             category: 'Data Analysis / Business Intelligence',
             description: 'An interactive Power BI dashboard that analyzes historical Asia Cup cricket data, providing insights into team performance, player contributions, and tournament trends. The report features synced slicers across pages, dynamic visuals, and KPI summaries to enable intuitive data exploration and decision-making.',
             tags: ['Power BI', 'Data Analysis', 'Business Intelligence', 'Interactive Visualizations', 'Drill-down Capabilities', 'Drill-through Functionality'],
-            githubUrl: "https://github.com/M-Wajeeh",
+            githubUrl: "https://github.com/M-Wajeeh/asia-cup-powerbi-report",
             icon: BarChart3
+        },
+        {
+            title: 'end-to-end-telco-churn-ml',
+            category: 'Machine Learning/Machine Learning Operations',
+            description: 'End-to-end MLOps project for predicting telecom customer churn using FastAPI, Docker, github actions, with MLflow tracking and a web UI for real-time inference.',
+            tags: ['Machine Learning', 'Machine Learning Operations', 'FastAPI', 'Docker', 'GitHub Actions', 'MLflow', 'Web UI', 'Real-time Inference'],
+            githubUrl: "https://github.com/M-Wajeeh/end-to-end-telco-churn-ml",
+            icon: Layers
         }
     ]
 };

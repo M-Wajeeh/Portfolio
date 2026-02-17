@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
+import Hero from './components/Hero.tsx';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -8,7 +8,7 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 
 function App() {
-    const [theme, setTheme] = useState(() => {
+    const [theme, setTheme] = useState<string>(() => {
         return localStorage.getItem('theme') || 'dark';
     });
 

@@ -1,9 +1,14 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
-const Navbar = ({ theme, toggleTheme }) => {
+interface NavbarProps {
+    theme: string;
+    toggleTheme: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
@@ -31,7 +36,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const scrollToSection = (sectionId) => {
+    const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -54,7 +59,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             animate={{ y: 0 }}
             transition={{ duration: 0.8, ease: "circOut" }}
             style={{
-                position: 'fixed',
+                position: 'fixed' as const,
                 top: 0,
                 left: 0,
                 right: 0,
@@ -168,7 +173,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                         exit={{ opacity: 0, y: -10 }}
                         className="mobile-menu"
                         style={{
-                            position: 'absolute',
+                            position: 'absolute' as const,
                             top: '100%',
                             left: '0',
                             right: '0',

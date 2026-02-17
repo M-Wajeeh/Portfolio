@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowDown, Mail, Github, Linkedin } from 'lucide-react';
+import { Mail, Github, Linkedin } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import portrait from '../assets/portrait.jpg';
 
@@ -36,7 +36,7 @@ const Hero = () => {
                         <div className="hero-cta-minimal">
                             <button
                                 className="btn-primary-minimal"
-                                onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
+                                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                             >
                                 VIEW SELECTED WORK
                             </button>

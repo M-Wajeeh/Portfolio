@@ -1,9 +1,16 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { ExternalLink, Github, ArrowRight, Shield, Zap, BarChart3, Globe } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
+import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { portfolioData, Project } from '../data/portfolioData';
 
-const ProjectCard = ({ project, index, total, progress }) => {
+interface ProjectCardProps {
+    project: Project;
+    index: number;
+    total: number;
+    progress: MotionValue<number>;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, progress }) => {
     // Each card starts stacking as we scroll. 
     // The scale decreases slightly as new cards come on top.
     const scale = useTransform(progress, [index / total, (index + 1) / total], [1, 0.9]);
@@ -24,7 +31,7 @@ const ProjectCard = ({ project, index, total, progress }) => {
             onClick={() => window.open(project.githubUrl, '_blank', 'noopener,noreferrer')}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => {
+            onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
                 }
@@ -68,7 +75,7 @@ const ProjectCard = ({ project, index, total, progress }) => {
 };
 
 const Projects = () => {
-    const containerRef = useRef(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]

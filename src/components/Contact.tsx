@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Github, ArrowUpRight, Send } from 'lucide-react';
+import { ArrowUpRight, Send } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const Contact = () => {
@@ -141,7 +141,7 @@ const Contact = () => {
                     font-size: 0.7rem;
                     font-weight: 600;
                     color: var(--color-text-tertiary);
-                    opacity: 0.4;
+                    opacity: 40;
                     letter-spacing: 0.1em;
                 }
 

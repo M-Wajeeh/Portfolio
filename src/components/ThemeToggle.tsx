@@ -1,6 +1,12 @@
+import React from 'react';
 import { Sun, Moon } from 'lucide-react';
 
-const ThemeToggle = ({ theme, toggleTheme }) => {
+interface ThemeToggleProps {
+    theme: string;
+    toggleTheme: () => void;
+}
+
+const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, toggleTheme }) => {
     return (
         <button
             onClick={toggleTheme}
@@ -19,11 +25,11 @@ const ThemeToggle = ({ theme, toggleTheme }) => {
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
             }}
-            onMouseEnter={(e) => {
+            onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.currentTarget.style.transform = 'scale(1.1)';
                 e.currentTarget.style.borderColor = 'var(--color-primary)';
             }}
-            onMouseLeave={(e) => {
+            onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.currentTarget.style.transform = 'scale(1)';
                 e.currentTarget.style.borderColor = 'var(--hud-border)';
             }}
