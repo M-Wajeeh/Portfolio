@@ -27,3 +27,16 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Temporary files
+*.tmp
+*.temp
+tsc_errors.txt
+
+# OS
+Thumbs.db
+.DS_Store
