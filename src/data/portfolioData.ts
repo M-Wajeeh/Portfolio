@@ -174,7 +174,7 @@ export const portfolioData: PortfolioData = {
 
     projects: [
         {
-            title: "Diffusion-Based Virtual Try-On Pipeline",
+            title: "Diffusion-Based Virtual Try-On Pipeline(Final Year Project)",
             category: "Deep Learning Project",
             description: "Built an end-to-end AI pipeline for virtual garment fitting using diffusion models, agnostic human parsing, tensor preprocessing, and chatbot-assisted interaction. Designed backend integration with Firebase for authentication and data handling.",
             tags: ["Diffusers", "PyTorch", "Image Processing", "Human Parsing", "MLOps", "FastAPI", "Firebase"],
