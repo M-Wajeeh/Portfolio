@@ -191,6 +191,22 @@ export const portfolioData: PortfolioData = {
             icon: Layers
         },
         {
+            title: 'end-to-end-purchase-prediction-ml',
+            category: 'Machine Learning/MLOps',
+            description: 'Production-style ML pipeline for online purchase prediction with modular components (ingestion → transformation → training), XGBoost modeling, config-driven architecture, structured logging, and DVC-based reproducibility.',
+            tags: [
+                'Machine Learning',
+                'MLOps',
+                'XGBoost',
+                'DVC',
+                'Data Pipeline',
+                'Model Training',
+                'Reproducible ML'
+            ],
+            githubUrl: "https://github.com/YOUR_USERNAME/YOUR_REPO_NAME",
+            icon: Brain
+        },
+        {
             title: 'Customer Analytics & KPI Reporting using SQL',
             category: 'Analytics Engineering / SQL Data Modeling',
             description: 'An advanced SQL analytics project that builds a customer-level reporting view by consolidating raw transactional data into meaningful KPIs and segments. The project uses SQL views, CTEs, and window functions to create an analytics-ready dataset that can be directly consumed by BI tools such as Power BI or Tableau for business decision-making.',
@@ -214,5 +230,6 @@ export const portfolioData: PortfolioData = {
             githubUrl: "https://github.com/M-Wajeeh/end-to-end-telco-churn-ml",
             icon: Layers
         }
+
     ]
 };
