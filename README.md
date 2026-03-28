@@ -96,7 +96,14 @@ VITE_USER_NAME="Your Name"
 VITE_USER_EMAIL="your.email@example.com"
 VITE_USER_GITHUB="https://github.com/yourusername"
 VITE_USER_LINKEDIN="https://linkedin.com/in/yourusername"
+VITE_USER_RESUME_URL="/AI-ML.pdf"
+VITE_USER_RESUME_PRIMARY_LABEL="AI/ML"
+VITE_USER_RESUME_PRIMARY_URL="/AI-ML.pdf"
+VITE_USER_RESUME_SECONDARY_LABEL="Data Analytics"
+VITE_USER_RESUME_SECONDARY_URL="/DataAnalytics-Wajeeh.pdf"
 ```
+
+To use the resume buttons, place your PDFs at `public/AI-ML.pdf` and `public/DataAnalytics-Wajeeh.pdf` (or point the URLs above to external links).
 
 ### Customization
 

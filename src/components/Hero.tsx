@@ -40,6 +40,36 @@ const Hero = () => {
                             >
                                 VIEW SELECTED WORK
                             </button>
+
+                            <details className="resume-dropdown">
+                                <summary className="btn-primary-minimal">VIEW RESUME</summary>
+                                <div className="resume-dropdown-menu" role="menu" aria-label="Resume options">
+                                    <a
+                                        className="resume-dropdown-item"
+                                        href={portfolioData.personalInfo.resumePrimaryUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        role="menuitem"
+                                        onClick={(e) => {
+                                            (e.currentTarget.closest('details') as HTMLDetailsElement | null)?.removeAttribute('open');
+                                        }}
+                                    >
+                                        {portfolioData.personalInfo.resumePrimaryLabel}
+                                    </a>
+                                    <a
+                                        className="resume-dropdown-item"
+                                        href={portfolioData.personalInfo.resumeSecondaryUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        role="menuitem"
+                                        onClick={(e) => {
+                                            (e.currentTarget.closest('details') as HTMLDetailsElement | null)?.removeAttribute('open');
+                                        }}
+                                    >
+                                        {portfolioData.personalInfo.resumeSecondaryLabel}
+                                    </a>
+                                </div>
+                            </details>
                             <div className="social-hero-minimal">
                                 <a href={portfolioData.personalInfo.github} className="hero-social-link"><Github size={20} /></a>
                                 <a href={portfolioData.personalInfo.linkedin} className="hero-social-link"><Linkedin size={20} /></a>
@@ -121,11 +151,26 @@ const Hero = () => {
                     gap: 2.5rem;
                 }
 
+                .hero-cta-minimal .btn-primary-minimal,
+                .hero-cta-minimal .btn-secondary-minimal {
+                    width: 280px;
+                    height: 56px;
+                    padding: 0 2rem;
+                    justify-content: center;
+                    text-align: center;
+                    white-space: nowrap;
+                    box-sizing: border-box;
+                    line-height: 1;
+                }
+
                 .btn-primary-minimal {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
                     background: var(--color-text-primary);
                     color: var(--color-bg-primary);
                     padding: 1rem 2rem;
-                    border: none;
+                    border: 1px solid transparent;
                     font-weight: 700;
                     letter-spacing: 0.05em;
                     cursor: pointer;
@@ -134,7 +179,76 @@ const Hero = () => {
                     border-radius: var(--radius-sm);
                 }
 
+                .btn-secondary-minimal {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: transparent;
+                    color: var(--color-text-primary);
+                    padding: 1rem 2rem;
+                    border: 1px solid var(--color-text-primary);
+                    font-weight: 700;
+                    letter-spacing: 0.05em;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    font-size: 0.9rem;
+                    border-radius: var(--radius-sm);
+                    text-decoration: none;
+                }
+
+                .resume-dropdown {
+                    position: relative;
+                }
+
+                .resume-dropdown > summary {
+                    list-style: none;
+                }
+
+                .resume-dropdown > summary::-webkit-details-marker {
+                    display: none;
+                }
+
+                .resume-dropdown-menu {
+                    position: absolute;
+                    top: calc(100% + 0.75rem);
+                    left: 0;
+                    min-width: 220px;
+                    background: var(--color-bg-secondary);
+                    border: 1px solid var(--color-border);
+                    border-radius: var(--radius-sm);
+                    box-shadow: var(--shadow-xl);
+                    overflow: hidden;
+                    z-index: 10;
+                }
+
+                .resume-dropdown-item {
+                    display: block;
+                    padding: 0.9rem 1rem;
+                    color: var(--color-text-primary);
+                    text-decoration: none;
+                    font-weight: 700;
+                    letter-spacing: 0.02em;
+                    transition: background 0.2s ease, color 0.2s ease;
+                }
+
+                .resume-dropdown-item:hover {
+                    background: var(--color-bg-primary);
+                    color: var(--color-primary);
+                }
+
                 .btn-primary-minimal:hover {
+                    transform: translateY(-3px);
+                    box-shadow: var(--shadow-xl);
+                }
+
+                .btn-secondary-minimal:hover {
+                    transform: translateY(-3px);
+                    background: var(--color-text-primary);
+                    color: var(--color-bg-primary);
+                    box-shadow: var(--shadow-xl);
+                }
+
+                .resume-dropdown[open] > summary.btn-primary-minimal {
                     transform: translateY(-3px);
                     box-shadow: var(--shadow-xl);
                 }
@@ -230,6 +344,11 @@ const Hero = () => {
                     .hero-cta-minimal {
                         flex-direction: column;
                         gap: 1.5rem;
+                    }
+
+                    .resume-dropdown-menu {
+                        left: 50%;
+                        transform: translateX(-50%);
                     }
 
                     .hero-headline {

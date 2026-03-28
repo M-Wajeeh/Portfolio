@@ -20,6 +20,11 @@ export interface PersonalInfo {
     email: string;
     github: string;
     linkedin: string;
+    resumeUrl: string;
+    resumePrimaryLabel: string;
+    resumePrimaryUrl: string;
+    resumeSecondaryLabel: string;
+    resumeSecondaryUrl: string;
     twitter: string;
     status: string;
     tagline: string;
@@ -81,6 +86,12 @@ export const portfolioData: PortfolioData = {
         email: (import.meta as any).env.VITE_USER_EMAIL || "contact@example.com",
         github: (import.meta as any).env.VITE_USER_GITHUB || "https://github.com/",
         linkedin: (import.meta as any).env.VITE_USER_LINKEDIN || "https://linkedin.com/in/",
+        // Backward-compatible single resume URL (defaults to the primary resume)
+        resumeUrl: (import.meta as any).env.VITE_USER_RESUME_URL || (import.meta as any).env.VITE_USER_RESUME_PRIMARY_URL || "/AI-ML.pdf",
+        resumePrimaryLabel: (import.meta as any).env.VITE_USER_RESUME_PRIMARY_LABEL || "AI/ML",
+        resumePrimaryUrl: (import.meta as any).env.VITE_USER_RESUME_PRIMARY_URL || "/AI-ML.pdf",
+        resumeSecondaryLabel: (import.meta as any).env.VITE_USER_RESUME_SECONDARY_LABEL || "Data Analytics",
+        resumeSecondaryUrl: (import.meta as any).env.VITE_USER_RESUME_SECONDARY_URL || "/DataAnalytics-Wajeeh.pdf",
         twitter: "",
         status: "ACCEPTING PROJECTS",
         tagline: "Engineering intelligent systems that solve real-world problems",
