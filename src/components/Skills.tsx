@@ -2,62 +2,42 @@ import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 
 const Skills = () => {
-    const skillCategories = portfolioData.skills.categories;
-    const allSkills = portfolioData.skills.marquee;
+    const cats = portfolioData.skills.categories;
+    const marquee = portfolioData.skills.marquee;
 
     return (
-        <section id="skills" className="skills-modern">
+        <section id="skills" className="skills">
             <div className="container">
-                <div className="section-frame skills-header-frame">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <span className="section-label">Capabilities</span>
-                        <h2>TECH STACK & <span className="text-highlight">EXPERTISE</span></h2>
-                    </motion.div>
-                </div>
+                <span className="sec-num">02 // ARSENAL</span>
+                <h2 className="sec-title">MASTERING THE <span className="hl">STACK.</span></h2>
 
-                {/* Infinite Moving Marquee */}
-                <motion.div
-                    className="marquee-container"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                >
-                    <div className="marquee-content">
-                        {allSkills.map((skill, i) => (
-                            <span key={i} className="marquee-item">{skill}</span>
-                        ))}
-                        {/* Repeat for seamless loop */}
-                        {allSkills.map((skill, i) => (
-                            <span key={`dup-${i}`} className="marquee-item">{skill}</span>
+                <div className="marquee-wrap">
+                    <div className="marquee-track">
+                        {[...marquee, ...marquee].map((s, i) => (
+                            <span key={i} className="marquee-item">{s}</span>
                         ))}
                     </div>
-                </motion.div>
+                </div>
 
-                <div className="skills-grid-modern">
-                    {skillCategories.map((cat, idx) => {
+                <div className="skills-grid">
+                    {cats.map((cat, idx) => {
                         const Icon = cat.icon;
                         return (
                             <motion.div
                                 key={idx}
-                                className="skill-card-minimal"
-                                initial={{ opacity: 0, y: 30 }}
+                                className="skill-card"
+                                initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.2 + (idx * 0.1) }}
+                                transition={{ duration: 0.5, delay: idx * 0.08 }}
                             >
-                                <div className="card-header">
-                                    <Icon size={24} className="card-icon" />
+                                <div className="skill-header">
+                                    <Icon size={20} className="skill-icon" />
                                     <h3>{cat.title}</h3>
                                 </div>
-                                <div className="card-skills-list">
-                                    {cat.skills.map((skill, i) => (
-                                        <span key={i} className="skill-tag-min">{skill}</span>
+                                <div className="skill-tags">
+                                    {cat.skills.map((s, i) => (
+                                        <span key={i} className="skill-tag">{s}</span>
                                     ))}
                                 </div>
                             </motion.div>
@@ -67,133 +47,69 @@ const Skills = () => {
             </div>
 
             <style>{`
-                .skills-modern {
-                    padding: var(--spacing-2xl) 0;
+                .skills { padding: 8rem 0; }
+                .marquee-wrap {
+                    overflow: hidden; position: relative;
+                    margin: 2rem 0 3rem; padding: 1rem 0;
                 }
-
-                .skills-header-frame {
-                    margin-bottom: var(--spacing-2xl);
-                    padding: 3rem 4rem;
+                .marquee-wrap::before, .marquee-wrap::after {
+                    content: ''; position: absolute; top: 0; width: 120px; height: 100%;
+                    z-index: 2; pointer-events: none;
                 }
-
-                .text-highlight {
-                    color: var(--color-primary);
+                .marquee-wrap::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+                .marquee-wrap::after { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
+                .marquee-track {
+                    display: inline-flex; gap: 3rem;
+                    animation: slide 50s linear infinite; white-space: nowrap;
                 }
-
-                .marquee-container {
-                    overflow: hidden;
-                    white-space: nowrap;
-                    margin: var(--spacing-xl) 0 var(--spacing-2xl);
-                    position: relative;
-                }
-
-                .marquee-container::before,
-                .marquee-container::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    width: 150px;
-                    height: 100%;
-                    z-index: 2;
-                    pointer-events: none;
-                }
-
-                .marquee-container::before {
-                    left: 0;
-                    background: linear-gradient(to right, var(--color-bg-primary), transparent);
-                }
-
-                .marquee-container::after {
-                    right: 0;
-                    background: linear-gradient(to left, var(--color-bg-primary), transparent);
-                }
-
-                .marquee-content {
-                    display: inline-block;
-                    animation: marquee 60s linear infinite;
-                }
-
                 .marquee-item {
-                    font-family: 'monospace';
-                    font-size: 1.25rem;
-                    font-weight: 800;
-                    color: var(--color-text-tertiary);
-                    opacity: 0.15;
-                    margin-right: 4rem;
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    transition: all 0.3s ease;
+                    font-size: 1rem; font-weight: 800; color: var(--text-mute);
+                    opacity: 0.25; letter-spacing: 0.05em; text-transform: uppercase;
                 }
-
-                .marquee-item:hover {
-                    color: var(--color-primary);
-                    opacity: 0.6;
-                }
-
-                @keyframes marquee {
-                    from { transform: translateX(0); }
-                    to { transform: translateX(-50%); }
-                }
-
-                .skills-grid-modern {
+                @keyframes slide { to { transform: translateX(-50%); } }
+                .skills-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                    gap: var(--spacing-lg);
+                    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                    gap: 1.25rem;
                 }
-
-                .skill-card-minimal {
-                    background: var(--color-bg-secondary);
-                    padding: var(--spacing-xl);
-                    border-radius: var(--radius-xl);
-                    border: 1px solid var(--color-border);
-                    transition: all 0.4s ease;
+                .skill-card {
+                    background: var(--bg-alt);
+                    border: 1px solid var(--border);
+                    border-radius: var(--r);
+                    padding: 1.75rem;
+                    transition: all 0.3s;
                 }
-
-                .skill-card-minimal:hover {
-                    transform: translateY(-5px);
-                    border-color: var(--color-primary);
-                    box-shadow: var(--shadow-md);
+                .skill-card:hover {
+                    border-color: var(--accent);
+                    transform: translateY(-3px);
                 }
-
-                .card-header {
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-                    margin-bottom: var(--spacing-lg);
+                .skill-header {
+                    display: flex; align-items: center; gap: 0.75rem;
+                    margin-bottom: 1.25rem;
                 }
-
-                .card-icon {
-                    color: var(--color-primary);
+                .skill-icon { color: var(--accent); }
+                .skill-header h3 {
+                    font-size: 0.75rem; font-weight: 700;
+                    letter-spacing: 0.1em; color: var(--text-sec);
                 }
-
-                .card-header h3 {
-                    font-size: 0.85rem;
-                    letter-spacing: 0.1em;
-                    color: var(--color-text-tertiary);
-                    font-weight: 700;
-                }
-
-                .card-skills-list {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 0.6rem;
-                }
-
-                .skill-tag-min {
-                    padding: 0.4rem 0.8rem;
-                    background: var(--color-bg-primary);
-                    border-radius: var(--radius-sm);
-                    font-size: 0.75rem;
+                .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+                .skill-tag {
+                    padding: 0.3rem 0.7rem;
+                    background: var(--bg);
+                    border: 1px solid var(--border);
+                    border-radius: var(--r-sm);
+                    font-size: 0.7rem;
                     font-weight: 600;
-                    color: var(--color-text-secondary);
-                    border: 1px solid var(--color-border);
-                    transition: all 0.3s ease;
+                    color: var(--text-sec);
+                    transition: all 0.3s;
                 }
-
-                .skill-tag-min:hover {
-                    background: var(--color-primary);
-                    color: white;
-                    border-color: var(--color-primary);
+                .skill-tag:hover {
+                    background: var(--accent);
+                    color: var(--bg);
+                    border-color: var(--accent);
+                }
+                @media (max-width: 768px) {
+                    .skills { padding: 5rem 0; }
                 }
             `}</style>
         </section>
