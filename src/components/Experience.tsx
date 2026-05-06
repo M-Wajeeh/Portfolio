@@ -1,55 +1,52 @@
 import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap, Calendar } from 'lucide-react';
+import { Briefcase, GraduationCap, Calendar, Trophy, Mic } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const Experience = () => {
-    const experiences = portfolioData.experience;
+    const exps = portfolioData.experience;
+
+    const iconMap: Record<string, typeof Briefcase> = {
+        'Achievement': Trophy,
+        'Speaking': Mic,
+        'Internship': Briefcase,
+        'Job simulation': Briefcase,
+        'EDU': GraduationCap,
+    };
 
     return (
-        <section id="experience" className="experience-modern">
+        <section id="experience" className="experience">
             <div className="container">
-                <div className="section-frame experience-header-frame">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <span className="section-label">Trajectory</span>
-                        <h2>PROFESSIONAL <span className="gradient-text">LOOP</span></h2>
-                    </motion.div>
-                </div>
+                <span className="sec-num">04 // JOURNEY</span>
+                <h2 className="sec-title">THE PATH <span className="hl">SO FAR.</span></h2>
 
-                <div className="timeline-modern">
-                    {experiences.map((exp, idx) => {
-                        const Icon = exp.type === 'WORK' ? Briefcase : GraduationCap;
+                <div className="timeline">
+                    {exps.map((exp, idx) => {
+                        const Icon = iconMap[exp.type] || Briefcase;
                         return (
                             <motion.div
                                 key={idx}
-                                className="timeline-item-modern"
-                                initial={{ opacity: 0, x: -30 }}
+                                className="tl-item"
+                                initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: idx * 0.08 }}
                             >
-                                <div className="timeline-dot-modern">
-                                    <Icon size={16} />
+                                <div className="tl-marker">
+                                    <div className="tl-dot"><Icon size={14} /></div>
+                                    {idx < exps.length - 1 && <div className="tl-line" />}
                                 </div>
-                                <div className="timeline-content-modern" style={{ position: 'relative' }}>
-                                    <div className="content-side-strip"></div>
-                                    <div className="content-inner">
-                                        <div className="content-header">
-                                            <span className="type-badge">{exp.type}</span>
-                                            <span className="period"><Calendar size={12} /> {exp.period}</span>
-                                        </div>
-                                        <h3>{exp.title}</h3>
-                                        <div className="company-name">{exp.company}</div>
-                                        <p className="exp-description">{exp.description}</p>
-                                        <div className="exp-tags">
-                                            {exp.tags.map((tag, i) => (
-                                                <span key={i} className="exp-tag"># {tag}</span>
-                                            ))}
-                                        </div>
+                                <div className="tl-content">
+                                    <div className="tl-top">
+                                        <span className="tl-type">{exp.type}</span>
+                                        <span className="tl-period"><Calendar size={11} /> {exp.period}</span>
+                                    </div>
+                                    <h3 className="tl-title">{exp.title}</h3>
+                                    <p className="tl-company">{exp.company}</p>
+                                    <p className="tl-desc">{exp.description}</p>
+                                    <div className="tl-tags">
+                                        {exp.tags.map((t, i) => (
+                                            <span key={i} className="tl-tag">{t}</span>
+                                        ))}
                                     </div>
                                 </div>
                             </motion.div>
@@ -59,150 +56,72 @@ const Experience = () => {
             </div>
 
             <style>{`
-                .experience-modern {
-                    padding: var(--spacing-2xl) 0;
+                .experience { padding: 8rem 0; }
+                .timeline { max-width: 800px; margin: 1rem auto 0; }
+                .tl-item { display: grid; grid-template-columns: 50px 1fr; gap: 0; }
+                .tl-marker {
+                    display: flex; flex-direction: column; align-items: center;
                 }
-
-                .experience-header-frame {
-                    margin-bottom: var(--spacing-2xl);
-                    padding: 3rem 4rem;
+                .tl-dot {
+                    width: 32px; height: 32px; border-radius: 50%;
+                    background: var(--bg-alt); border: 1px solid var(--border);
+                    display: flex; align-items: center; justify-content: center;
+                    color: var(--accent); flex-shrink: 0;
                 }
-
-                .text-highlight {
-                    color: var(--color-primary);
+                .tl-line {
+                    width: 1px; flex: 1; background: var(--border); margin: 0.5rem 0;
                 }
-
-                .timeline-modern {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0;
-                    max-width: 900px;
-                    margin: 0 auto;
-                    margin-top: var(--spacing-xl);
+                .tl-content {
+                    background: var(--bg-alt);
+                    border: 1px solid var(--border);
+                    border-radius: var(--r);
+                    padding: 1.5rem;
+                    margin-bottom: 1.25rem;
+                    margin-left: 0.5rem;
+                    transition: all 0.3s;
                 }
-
-                .timeline-item-modern {
-                    display: grid;
-                    grid-template-columns: 80px 1fr;
-                    gap: 0;
+                .tl-content:hover {
+                    border-color: var(--accent);
+                    transform: translateX(4px);
                 }
-
-                .timeline-dot-modern {
-                    display: flex;
-                    justify-content: center;
-                    padding-top: 1.5rem;
-                    color: var(--color-primary);
-                    position: relative;
+                .tl-top {
+                    display: flex; justify-content: space-between;
+                    align-items: center; margin-bottom: 0.5rem;
                 }
-
-                .timeline-dot-modern::after {
-                    content: '';
-                    position: absolute;
-                    top: 3.5rem;
-                    bottom: 0;
-                    width: 2px;
-                    background: var(--color-border);
-                }
-
-                .timeline-item-modern:last-child .timeline-dot-modern::after {
-                    display: none;
-                }
-
-                .timeline-content-modern {
-                    margin-bottom: var(--spacing-xl);
-                    position: relative;
-                    overflow: hidden;
-                    display: flex;
-                    transition: all 0.3s ease;
-                    background: var(--color-bg-secondary);
-                    border-radius: var(--radius-lg);
-                    border: 1px solid var(--color-border);
-                }
-
-                .timeline-content-modern:hover {
-                    transform: translateX(5px);
-                    border-color: var(--color-primary);
-                    box-shadow: var(--shadow-md);
-                }
-
-                .content-side-strip {
-                    width: 4px;
-                    background: var(--color-primary);
-                }
-
-                .content-inner {
-                    padding: 1.5rem 2rem;
-                    width: 100%;
-                }
-
-                .content-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 0.75rem;
-                }
-
-                .type-badge {
-                    font-size: 0.65rem;
-                    font-weight: 700;
-                    color: var(--color-primary);
-                    letter-spacing: 0.1em;
+                .tl-type {
+                    font-size: 0.6rem; font-weight: 700;
+                    color: var(--accent); letter-spacing: 0.1em;
                     text-transform: uppercase;
                 }
-
-                .period {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    font-size: 0.7rem;
-                    font-family: 'monospace';
-                    color: var(--color-text-tertiary);
+                .tl-period {
+                    display: flex; align-items: center; gap: 0.3rem;
+                    font-family: 'Courier New', monospace;
+                    font-size: 0.65rem; color: var(--text-mute);
                 }
-
-                .timeline-content-modern h3 {
-                    font-size: 1.25rem;
-                    font-weight: 700;
-                    margin-bottom: 0.25rem;
-                    color: var(--color-text-primary);
+                .tl-title {
+                    font-size: 1.1rem; font-weight: 700;
+                    color: var(--text); margin-bottom: 0.2rem;
                 }
-
-                .company-name {
-                    font-size: 0.95rem;
-                    color: var(--color-text-secondary);
-                    font-weight: 600;
-                    margin-bottom: 1rem;
+                .tl-company {
+                    font-size: 0.9rem; color: var(--text-sec);
+                    font-weight: 600; margin-bottom: 0.75rem;
                 }
-
-                .exp-description {
-                    color: var(--color-text-secondary);
-                    font-size: 1rem;
-                    line-height: 1.6;
-                    margin-bottom: 1.5rem;
+                .tl-desc {
+                    font-size: 0.85rem; color: var(--text-sec);
+                    line-height: 1.6; margin-bottom: 1rem;
                 }
-
-                .exp-tags {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 1rem;
+                .tl-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+                .tl-tag {
+                    font-size: 0.6rem; font-weight: 600;
+                    font-family: 'Courier New', monospace;
+                    color: var(--text-mute);
                 }
-
-                .exp-tag {
-                    font-size: 0.7rem;
-                    font-family: 'monospace';
-                    color: var(--color-text-tertiary);
-                    font-weight: 600;
-                }
-
-                @media (max-width: 640px) {
-                    .timeline-item-modern {
-                        grid-template-columns: 50px 1fr;
-                    }
-                    .content-inner {
-                        padding: 1.25rem;
-                    }
+                @media (max-width: 768px) {
+                    .experience { padding: 5rem 0; }
+                    .tl-item { grid-template-columns: 40px 1fr; }
                 }
             `}</style>
-        </section >
+        </section>
     );
 };
 

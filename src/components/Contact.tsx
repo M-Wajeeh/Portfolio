@@ -1,158 +1,132 @@
-import { ArrowUpRight, Send } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Send, ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const Contact = () => {
     return (
-        <section id="contact" className="contact-modern">
+        <section id="contact" className="contact">
             <div className="container">
-                <div className="section-frame">
-                    <div className="contact-content-inner">
-                        <span className="section-label">Collaboration</span>
-                        <h2 className="contact-title">READY TO <br /><span className="text-highlight">SYNC?</span></h2>
+                <span className="sec-num">05 // CONNECT</span>
 
-                        <p className="contact-lead">
-                            I am currently open to high-impact projects and strategic partnerships.
-                            Let's build something that matters.
-                        </p>
+                <motion.h2
+                    className="contact-title"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7 }}
+                >
+                    LET'S BUILD<br />
+                    <span className="hl">SOMETHING.</span>
+                </motion.h2>
 
-                        <div className="contact-methods-minimal">
-                            <a href={`mailto:${portfolioData.personalInfo.email}`} className="minimal-contact-btn">
-                                START A CONVERSATION <Send size={18} />
-                            </a>
-                        </div>
+                <motion.p
+                    className="contact-lead"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                >
+                    Open to high-impact projects and collaborations.<br />
+                    Let's make something that actually matters.
+                </motion.p>
 
-                        <div className="social-footer-minimal">
-                            <div className="social-tags">
-                                <a href={portfolioData.personalInfo.github} className="social-links-min">GITHUB <ArrowUpRight size={14} /></a>
-                                <a href={portfolioData.personalInfo.linkedin} className="social-links-min">LINKEDIN <ArrowUpRight size={14} /></a>
-                            </div>
-                            <div className="availability-indicator">
-                                <div className="status-dot"></div>
-                                <span>STATUS: {portfolioData.personalInfo.status}</span>
-                            </div>
-                        </div>
+                <motion.a
+                    href={`mailto:${portfolioData.personalInfo.email}`}
+                    className="contact-btn"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                >
+                    START A CONVERSATION <Send size={16} />
+                </motion.a>
+
+                <div className="contact-footer">
+                    <div className="contact-links">
+                        <a href={portfolioData.personalInfo.github} target="_blank" rel="noopener noreferrer" className="contact-link">
+                            GITHUB <ArrowUpRight size={12} />
+                        </a>
+                        <a href={portfolioData.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="contact-link">
+                            LINKEDIN <ArrowUpRight size={12} />
+                        </a>
+                    </div>
+                    <div className="status-row">
+                        <div className="status-dot" />
+                        <span>STATUS: {portfolioData.personalInfo.status}</span>
                     </div>
                 </div>
 
-                <div className="footer-copyright">
-                    <div className="footer-left">© {new Date().getFullYear()} — {portfolioData.personalInfo.name}</div>
-                    <div className="footer-right">AI GRADUATE / ML ENGINEER</div>
+                <div className="copyright">
+                    <span>© {new Date().getFullYear()} {portfolioData.personalInfo.name}</span>
+                    <span>AI GRADUATE / ML ENGINEER</span>
                 </div>
             </div>
 
             <style>{`
-                .contact-modern {
-                    padding: 10rem 0;
-                }
-
+                .contact { padding: 8rem 0 4rem; }
                 .contact-title {
-                    font-size: clamp(3rem, 6vw, 5rem);
-                    font-weight: 800;
-                    line-height: 1;
+                    font-size: clamp(2.5rem, 6vw, 5rem);
+                    font-weight: 900; line-height: 1;
                     letter-spacing: -0.04em;
-                    color: var(--color-text-primary);
+                    color: var(--text);
+                    margin-bottom: 2rem;
                 }
-
-                .text-highlight {
-                    color: var(--color-primary);
-                }
-
+                .hl { color: var(--accent); }
                 .contact-lead {
-                    font-size: 1.25rem;
-                    color: var(--color-text-secondary);
-                    max-width: 500px;
-                    margin: 3rem 0;
-                    line-height: 1.6;
+                    font-size: 1.1rem; color: var(--text-sec);
+                    line-height: 1.7; max-width: 450px;
+                    margin-bottom: 2.5rem;
                 }
-
-                .minimal-contact-btn {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 1rem;
-                    background: var(--color-text-primary);
-                    color: var(--color-bg-primary);
-                    padding: 1.5rem 3rem;
-                    border-radius: var(--radius-md);
-                    font-weight: 700;
-                    letter-spacing: 0.1em;
-                    text-decoration: none;
-                    transition: all 0.3s ease;
+                .contact-btn {
+                    display: inline-flex; align-items: center; gap: 0.75rem;
+                    background: var(--accent); color: var(--bg);
+                    padding: 1.1rem 2.5rem; font-weight: 700;
+                    font-size: 0.75rem; letter-spacing: 0.1em;
+                    border: none; cursor: pointer; transition: all 0.3s;
+                    text-decoration: none; font-family: inherit;
                 }
-
-                .minimal-contact-btn:hover {
-                    transform: translateY(-5px);
-                    background: var(--color-primary);
-                    color: white;
+                .contact-btn:hover {
+                    background: var(--accent-hover);
+                    transform: translateY(-3px);
+                    box-shadow: 0 0 30px rgba(200, 165, 90, 0.2);
                 }
-
-                .social-footer-minimal {
-                    margin-top: 6rem;
-                    padding-top: 2rem;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    border-top: 1px solid var(--color-border);
-                    flex-wrap: wrap;
-                    gap: 2rem;
+                .contact-footer {
+                    display: flex; justify-content: space-between;
+                    align-items: center; margin-top: 5rem;
+                    padding-top: 2rem; border-top: 1px solid var(--border);
+                    flex-wrap: wrap; gap: 1.5rem;
                 }
-
-                .social-tags {
-                    display: flex;
-                    gap: 2rem;
+                .contact-links { display: flex; gap: 2rem; }
+                .contact-link {
+                    font-size: 0.7rem; font-weight: 700;
+                    color: var(--text-mute); display: flex;
+                    align-items: center; gap: 0.3rem;
+                    letter-spacing: 0.1em; transition: color 0.3s;
                 }
-
-                .social-links-min {
-                    font-size: 0.75rem;
-                    font-weight: 700;
-                    color: var(--color-text-tertiary);
-                    text-decoration: none;
-                    display: flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    transition: color 0.3s ease;
-                    letter-spacing: 0.1em;
+                .contact-link:hover { color: var(--accent); }
+                .status-row {
+                    display: flex; align-items: center; gap: 0.6rem;
+                    font-size: 0.65rem; font-weight: 700;
+                    color: var(--text-mute); letter-spacing: 0.1em;
                 }
-
-                .social-links-min:hover {
-                    color: var(--color-primary);
-                }
-
-                .availability-indicator {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.8rem;
-                    font-size: 0.7rem;
-                    font-weight: 700;
-                    color: var(--color-text-tertiary);
-                    letter-spacing: 0.1em;
-                }
-
                 .status-dot {
-                    width: 8px;
-                    height: 8px;
-                    background: #22c55e;
-                    border-radius: 50%;
+                    width: 7px; height: 7px; background: #22c55e;
+                    border-radius: 50%; animation: pulse 2s infinite;
                 }
-
-                .footer-copyright {
-                    display: flex;
-                    justify-content: space-between;
-                    margin-top: 4rem;
-                    font-size: 0.7rem;
-                    font-weight: 600;
-                    color: var(--color-text-tertiary);
-                    opacity: 40;
-                    letter-spacing: 0.1em;
+                @keyframes pulse {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.4; }
                 }
-
+                .copyright {
+                    display: flex; justify-content: space-between;
+                    margin-top: 3rem; font-size: 0.65rem;
+                    font-weight: 600; color: var(--text-mute);
+                    letter-spacing: 0.08em; opacity: 0.6;
+                }
                 @media (max-width: 768px) {
-                    .contact-modern {
-                         padding: 6rem 0;
-                    }
-                    .social-footer-minimal {
-                        flex-direction: column;
-                        align-items: flex-start;
-                    }
+                    .contact { padding: 5rem 0 3rem; }
+                    .contact-footer { flex-direction: column; align-items: flex-start; }
+                    .copyright { flex-direction: column; gap: 0.5rem; }
                 }
             `}</style>
         </section>
