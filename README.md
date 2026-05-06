@@ -1,23 +1,24 @@
 # M. Wajeeh - Portfolio
 
-A modern, minimalist portfolio website showcasing expertise in **Data Analysis**, **Machine Learning**, and **MLOps Engineering**. Built with React, TypeScript, and Vite, featuring a clean glassmorphism design with smooth animations.
+A bold, editorial-style portfolio built with React, TypeScript, and Vite. Showcasing expertise in **ML Engineering**, **Data Analytics**, and **Generative AI** with a warm gold-on-dark design language.
 
-🔗 **[Live Demo](#)** | 📧 **[Contact](mailto:contact@example.com)**
+🔗 **[Live Demo](#)** | 📧 **[Contact](mailto:wajeeh9233@gmail.com)**
 
 ---
 
-## 🚀 Features
+## Features
 
-- **Minimalist Design** - Clean, professional aesthetic with glassmorphism effects
+- **Editorial Design** - Bold typography, numbered sections, and warm gold accents
+- **Dark/Light Mode** - Seamless theme switching with curated color palettes
 - **Fully Responsive** - Optimized for all devices and screen sizes
 - **TypeScript** - Type-safe codebase for better maintainability
-- **Framer Motion** - Smooth, professional animations throughout
-- **SEO Optimized** - Proper meta tags and semantic HTML
-- **Fast Performance** - Built with Vite for lightning-fast development and builds
+- **Framer Motion** - Smooth scroll-triggered and entrance animations
+- **SEO Optimized** - Proper meta tags, keywords, and semantic HTML
+- **Fast Performance** - Built with Vite for instant HMR and optimized builds
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: React 18 + TypeScript
 - **Build Tool**: Vite
@@ -27,7 +28,7 @@ A modern, minimalist portfolio website showcasing expertise in **Data Analysis**
 
 ---
 
-## 📦 Installation
+## Installation
 
 1. **Clone the repository**
    ```bash
@@ -50,42 +51,35 @@ A modern, minimalist portfolio website showcasing expertise in **Data Analysis**
    npm run build
    ```
 
-5. **Preview production build**
-   ```bash
-   npm run preview
-   ```
-
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Portfolio/
-├── public/              # Static assets
-│   └── favicon.png      # Custom favicon
+├── public/              # Static assets (favicon, resume PDFs)
 ├── src/
-│   ├── assets/          # Images and media
+│   ├── assets/          # Images (portrait)
 │   ├── components/      # React components
-│   │   ├── About.tsx
-│   │   ├── Contact.tsx
-│   │   ├── Experience.tsx
-│   │   ├── Hero.tsx
-│   │   ├── Navbar.tsx
-│   │   ├── Projects.tsx
-│   │   ├── Skills.tsx
-│   │   └── ThemeToggle.tsx
-│   ├── data/            # Portfolio data
-│   │   └── portfolioData.ts
-│   ├── types/           # TypeScript type definitions
-│   ├── App.tsx          # Main app component
-│   ├── index.css        # Global styles
-│   └── main.tsx         # App entry point
-└── index.html           # HTML template
+│   │   ├── Hero.tsx         # Bold headline + CTA + resume dropdown
+│   │   ├── About.tsx        # 01 // ORIGINS - Bio + portrait + stats
+│   │   ├── Skills.tsx       # 02 // ARSENAL - Skill grid + marquee
+│   │   ├── Projects.tsx     # 03 // WORK - Project list
+│   │   ├── Experience.tsx   # 04 // JOURNEY - Timeline
+│   │   ├── Contact.tsx      # 05 // CONNECT - CTA + footer
+│   │   ├── Navbar.tsx       # Fixed nav with section links
+│   │   └── ThemeToggle.tsx  # Dark/light switch
+│   ├── data/
+│   │   └── portfolioData.ts # Central data source for all content
+│   ├── App.tsx
+│   ├── index.css        # Design system (variables, reset, utilities)
+│   └── main.tsx
+└── index.html
 ```
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Environment Variables (Optional)
 
@@ -103,50 +97,39 @@ VITE_USER_RESUME_SECONDARY_LABEL="Data Analytics"
 VITE_USER_RESUME_SECONDARY_URL="/DataAnalytics-Wajeeh.pdf"
 ```
 
-To use the resume buttons, place your PDFs at `public/AI-ML.pdf` and `public/DataAnalytics-Wajeeh.pdf` (or point the URLs above to external links).
-
 ### Customization
 
-Edit `src/data/portfolioData.ts` to update:
-- Personal information
-- Skills and technologies
-- Projects and experience
-- Social media links
+All portfolio content lives in `src/data/portfolioData.ts`:
+- Personal info, roles, and bio
+- Skills categories and marquee items
+- Projects with descriptions and GitHub links
+- Experience timeline entries
+- Stats displayed in the About section
 
 ---
 
-## 🎨 Design Highlights
+## Design
 
-- **Dark/Light Mode** - Seamless theme switching
-- **Glassmorphism** - Modern frosted glass effects
-- **Gradient Accents** - Vibrant cyan-to-blue gradients
-- **Smooth Animations** - Page transitions and hover effects
-- **Typography** - Inter font family for clean readability
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+- **Color Palette** - Warm gold (`#c8a55a`) accent on near-black (`#0a0a0b`)
+- **Typography** - Inter font, heavy weights, tight letter-spacing
+- **Sections** - Numbered editorial style (`01 // ORIGINS`, `02 // ARSENAL`, etc.)
+- **Interactions** - Gold-accented hover states across cards, buttons, and links
+- **Layout** - Clean vertical flow with generous whitespace
 
 ---
 
-## 👤 Author
+## Author
 
-**M. Wajeeh**  
-Data Analyst | MLOps Engineer | ML Engineer
+**Muhammad Wajeeh Ul Hassan**
+Data Analyst | ML Engineer | AI Engineer
 
-- GitHub: [@M-Wajeeh](https://www.github.com/M-Wajeeh)
-- LinkedIn: [M Wajeeh]((https://www.linkedin.com/in/hassanwajeeh)
+- GitHub: [@M-Wajeeh](https://github.com/M-Wajeeh)
+- LinkedIn: [hassanwajeeh](https://www.linkedin.com/in/hassanwajeeh)
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Icons by [Lucide](https://lucide.dev/)
 - Animations by [Framer Motion](https://www.framer.com/motion/)
 - Built with [Vite](https://vitejs.dev/)
-
----
-
-⭐ **Star this repo if you found it helpful!**
