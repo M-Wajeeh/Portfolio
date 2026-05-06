@@ -3,7 +3,7 @@ import {
     BarChart3,
     Database,
     Brain,
-    Award,
+    Trophy,
     TrendingUp,
     PieChart,
     Settings,
@@ -11,6 +11,8 @@ import {
     Terminal,
     Shirt,
     Layers,
+    Search,
+    Sparkles,
     LucideIcon
 } from 'lucide-react';
 
@@ -82,7 +84,7 @@ export interface PortfolioData {
 export const portfolioData: PortfolioData = {
     personalInfo: {
         name: (import.meta as any).env.VITE_USER_NAME || "M. Wajeeh",
-        roles: ["Data Analyst", "MLOps Engineer", "ML Engineer"],
+        roles: ["Data Analyst", "ML Engineer", "AI Engineer"],
         email: (import.meta as any).env.VITE_USER_EMAIL || "contact@example.com",
         github: (import.meta as any).env.VITE_USER_GITHUB || "https://github.com/",
         linkedin: (import.meta as any).env.VITE_USER_LINKEDIN || "https://linkedin.com/in/",
@@ -95,14 +97,14 @@ export const portfolioData: PortfolioData = {
         twitter: "",
         status: "ACCEPTING PROJECTS",
         tagline: "Engineering intelligent systems that solve real-world problems",
-        subTagline: "AI Graduate with strong foundations in Data Analytics, Machine Learning, and MLOps.",
-        bio: "I’m a dedicated AI graduate focused on building machine learning systems that move beyond experiments into production. With a strong foundation in data analysis and ML engineering, I specialize in turning complex datasets into deployable, real-world applications using Python, SQL, Docker, and AWS. I am passionate about engineering systems that are not just intelligent, but reliable and scalable."
+        subTagline: "AI Graduate with hands-on experience in ML Engineering, Data Analytics, and Generative AI.",
+        bio: "I'm an AI graduate who builds machine learning systems that actually make it to production. I work across data analysis, ML engineering, and more recently, generative AI, from end-to-end ML pipelines with Docker and AWS to LLM-powered applications using LangChain and RAG. I care about building systems that aren't just smart, but reliable and ready for the real world."
     },
 
     stats: [
-        { icon: Award, value: '20+', label: 'COMPLETED PROJECTS', color: 'var(--color-primary)' },
-        { icon: TrendingUp, value: '2+', label: 'YEARS OF HANDS-ON EXPERIENCE', color: 'var(--color-accent-cyan)' },
-        { icon: Zap, value: '98%', label: 'ACCURACY RATE', color: 'var(--color-accent-magenta)' }
+        { icon: Trophy, value: '#1', label: 'VYROTHON 2026', color: 'var(--color-accent-cyan)' },
+        { icon: Zap, value: '580+', label: 'COMPETITORS OUTPERFORMED', color: 'var(--color-primary)' },
+        { icon: TrendingUp, value: '7+', label: 'END-TO-END ML PIPELINES', color: 'var(--color-accent-magenta)' }
     ],
 
     heroHUD: {
@@ -129,6 +131,11 @@ export const portfolioData: PortfolioData = {
                 skills: ['Machine Learning', 'Deep Learning', 'CNN/RNN/LSTM', 'NLP', 'Scikit-learn', 'TensorFlow', 'PyTorch']
             },
             {
+                title: 'GENERATIVE AI',
+                icon: Sparkles,
+                skills: ['Large Language Models (LLMs)', 'RAG Pipelines', 'LangChain', 'LangGraph', 'Prompt Engineering', 'Vector Databases']
+            },
+            {
                 title: 'MLOPS & DEPLOYMENT',
                 icon: Settings,
                 skills: ['ML Pipelines', 'Model Versioning', 'CI/CD for ML', 'Docker', 'DVC', 'MLflow', 'GitHub Actions', 'FastAPI', 'AWS (EC2/S3)']
@@ -149,10 +156,30 @@ export const portfolioData: PortfolioData = {
                 skills: ['Problem Solving', 'Technical Communication', 'Stakeholder Collaboration', 'Teamwork', 'Project Management']
             }
         ],
-        marquee: ['Python', 'SQL', 'TensorFlow', 'PyTorch', 'Docker', 'AWS', 'Power BI', 'Tableau', 'Pandas', 'NumPy', 'Scikit-learn', 'FastAPI', 'Git', 'MLflow', 'DVC']
+        marquee: ['Python', 'SQL', 'TensorFlow', 'PyTorch', 'LangChain', 'LLMs', 'RAG', 'LangGraph', 'Docker', 'AWS', 'Power BI', 'Tableau', 'Pandas', 'NumPy', 'Scikit-learn', 'FastAPI', 'Git', 'MLflow', 'DVC']
     },
 
     experience: [
+        {
+            type: 'Speaking',
+            title: 'Guest Speaker - Vyrothon Journey & AI Development',
+            company: 'GDG On Campus - COMSATS Abbottabad',
+            period: '2026',
+            description: `• Invited to speak about the journey of winning Vyrothon 2026 and building AI solutions under pressure.
+                            • Shared technical insights on voice-agent development and effective team collaboration.
+                            • Focused on bridging the gap between hackathon concepts and real-world AI applications.`,
+            tags: ['Public Speaking', 'AI Development', 'Community Engagement', 'Career Journey']
+        },
+        {
+            type: 'Achievement',
+            title: '1st Place Winner - Vyrothon 2026',
+            company: 'NUST | Vyro AI',
+            period: '2026',
+            description: `• Secured 1st position among 580+ applicants in an intensive multi-stage national hackathon.
+                            • Built an AI voice agent for real-estate that qualifies leads and books appointments in real-time.
+                            • Developed the core AI understanding and response logic, reducing business response time to zero.`,
+            tags: ['AI Voice Agent', 'LLMs', 'Hackathon', 'Real Estate AI', 'Teamwork']
+        },
         {
             type: 'Internship',
             title: 'Data Science Intern',
@@ -167,7 +194,7 @@ export const portfolioData: PortfolioData = {
             type: 'Job simulation',
             title: 'Data Analytics',
             company: 'Deloitte',
-            period: 'september 2025 - october 2025',
+            period: 'September 2025 - October 2025',
             description: `  • Cleaned and analyzed raw business datasets using Excel to ensure data accuracy and consistency.
                             • Built an interactive Tableau dashboard to highlight key trends and KPIs for decision-making.
                             • Presented insights in a clear, business-focused manner for non-technical stakeholders.`,
@@ -177,7 +204,7 @@ export const portfolioData: PortfolioData = {
             type: 'EDU',
             title: 'BS Artificial Intelligence',
             company: 'National University of Modern Languages,Islamabad ',
-            period: '2022 — 2026',
+            period: '2022 - 2026',
             description: 'Bachelor’s in Artificial Intelligence with a strong focus on data analysis, machine learning, and applied AI systems.',
             tags: ['Artificial Intelligence', 'Data Analysis', 'Machine Learning', 'Applied AI']
         }
@@ -196,7 +223,7 @@ export const portfolioData: PortfolioData = {
         {
             title: 'Vehicle Insurance MLOps Pipeline',
             category: 'MLOps / Machine Learning Deployment',
-            description: 'A production-grade end-to-end MLOps pipeline that demonstrates how machine learning systems are designed, deployed, and maintained in real-world environments. The project covers the full lifecycle — from cloud-based data ingestion and validation to automated model deployment using Docker, AWS, and CI/CD workflows.This project emphasizes modular architecture, reproducibility, and production-ready ML engineering practices.',
+            description: 'A production-grade end-to-end MLOps pipeline that demonstrates how machine learning systems are designed, deployed, and maintained in real-world environments. The project covers the full lifecycle, from cloud-based data ingestion and validation to automated model deployment using Docker, AWS, and CI/CD workflows. This project emphasizes modular architecture, reproducibility, and production-ready ML engineering practices.',
             tags: ['MLOps', 'Machine Learning Deployment', 'Docker', 'AWS', 'CI/CD', 'Data Ingestion', 'Data Validation', 'Model Deployment', 'Modular Architecture', 'Reproducibility', 'Production-Ready ML Engineering Practices'],
             githubUrl: "https://github.com/M-Wajeeh/mlops-vehicle-insurance-pipeline",
             icon: Layers
@@ -214,7 +241,7 @@ export const portfolioData: PortfolioData = {
                 'Model Training',
                 'Reproducible ML'
             ],
-            githubUrl: "https://github.com/YOUR_USERNAME/YOUR_REPO_NAME",
+            githubUrl: "https://github.com/M-Wajeeh/end-to-end-purchase-prediction-ml",
             icon: Brain
         },
         {
@@ -240,6 +267,14 @@ export const portfolioData: PortfolioData = {
             tags: ['Machine Learning', 'Machine Learning Operations', 'FastAPI', 'Docker', 'GitHub Actions', 'MLflow', 'Web UI', 'Real-time Inference'],
             githubUrl: "https://github.com/M-Wajeeh/end-to-end-telco-churn-ml",
             icon: Layers
+        },
+        {
+            title: 'RAG Insight Engine',
+            category: 'GenAI / Retrieval-Augmented Generation',
+            description: 'Modular RAG system for grounded document Q&A. Features pluggable loaders, recursive chunking, HuggingFace embeddings, a persistent Chroma vector store, and a citation-aware Groq LLM generator. Includes a Streamlit UI and an evaluation harness for measuring retrieval accuracy.',
+            tags: ['GenAI', 'RAG', 'LangChain', 'ChromaDB', 'HuggingFace', 'Groq', 'Streamlit', 'Python', 'Evaluation Harness'],
+            githubUrl: "https://github.com/M-Wajeeh/RAG-Insight-Engine",
+            icon: Search
         }
 
     ]
