@@ -22,15 +22,7 @@ function App() {
     };
 
     return (
-        <div className={`app ${theme}`}>
-            <div className="bg-orbs">
-                <div className="orb orb-1"></div>
-                <div className="orb orb-2"></div>
-                <div className="orb orb-3"></div>
-            </div>
-            <div className="grid-overlay"></div>
-            <div className="noise-texture"></div>
-
+        <div className="app">
             <Navbar theme={theme} toggleTheme={toggleTheme} />
             <main>
                 <Hero />

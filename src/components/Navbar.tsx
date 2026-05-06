@@ -3,223 +3,93 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
-interface NavbarProps {
-    theme: string;
-    toggleTheme: () => void;
-}
+interface NavbarProps { theme: string; toggleTheme: () => void; }
 
 const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme }) => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState('home');
+    const [scrolled, setScrolled] = useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-
-            const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
-            const scrollPosition = window.scrollY + 100;
-
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const { offsetTop, offsetHeight } = element;
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                        setActiveSection(section);
-                        break;
-                    }
-                }
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const onScroll = () => setScrolled(window.scrollY > 50);
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    const scrollToSection = (sectionId: string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-            setIsMobileMenuOpen(false);
-        }
+    const scrollTo = (id: string) => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        setMobileOpen(false);
     };
 
-    const navItems = [
-        { id: 'home', label: 'HOME' },
-        { id: 'about', label: 'PERSPECTIVE' },
-        { id: 'skills', label: 'STACK' },
+    const links = [
+        { id: 'about', label: 'ORIGINS' },
+        { id: 'skills', label: 'ARSENAL' },
         { id: 'projects', label: 'WORK' },
-        { id: 'experience', label: 'LOOP' },
-        { id: 'contact', label: 'SYNC' },
+        { id: 'experience', label: 'JOURNEY' },
+        { id: 'contact', label: 'CONNECT' },
     ];
 
     return (
         <motion.nav
-            initial={{ y: -100 }}
+            initial={{ y: -80 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.8, ease: "circOut" }}
-            style={{
-                position: 'fixed' as const,
-                top: 0,
-                left: 0,
-                right: 0,
-                zIndex: 1000,
-                padding: isScrolled ? '0.75rem 0' : '1.5rem 0',
-                transition: 'all 0.4s ease',
-                background: isScrolled ? 'var(--color-bg-primary)' : 'transparent',
-                borderBottom: isScrolled ? '1px solid var(--color-border)' : 'none',
-                boxShadow: isScrolled ? 'var(--shadow-sm)' : 'none',
-            }}
+            transition={{ duration: 0.6 }}
+            className={`nav ${scrolled ? 'nav--scrolled' : ''}`}
         >
-            <div className="container" style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-            }}>
-                {/* Logo with Modern Typeface */}
-                <div
-                    onClick={() => scrollToSection('home')}
-                    className="logo-minimal"
-                    style={{
-                        cursor: 'pointer',
-                        fontSize: '1rem',
-                        fontWeight: 900,
-                        letterSpacing: '0.2em',
-                        color: 'var(--color-text-primary)'
-                    }}
-                >
-                    M_WAJEEH
-                </div>
-
-                {/* Desktop Navigation */}
-                <div style={{
-                    display: 'flex',
-                    gap: '2.5rem',
-                    alignItems: 'center',
-                }}
-                    className="desktop-nav"
-                >
-                    {navItems.map((item) => (
-                        <button
-                            key={item.id}
-                            onClick={() => scrollToSection(item.id)}
-                            style={{
-                                background: 'none',
-                                border: 'none',
-                                color: activeSection === item.id ? 'var(--color-primary)' : 'var(--color-text-tertiary)',
-                                fontSize: '0.65rem',
-                                fontWeight: 700,
-                                letterSpacing: '0.15em',
-                                cursor: 'pointer',
-                                transition: 'all 0.3s ease',
-                                position: 'relative',
-                            }}
-                        >
-                            {item.label}
-                            {activeSection === item.id && (
-                                <motion.div
-                                    layoutId="nav-active"
-                                    style={{
-                                        position: 'absolute',
-                                        bottom: '-12px',
-                                        left: '50%',
-                                        x: '-50%',
-                                        width: '4px',
-                                        height: '4px',
-                                        background: 'var(--color-primary)',
-                                        borderRadius: '50%',
-                                    }}
-                                />
-                            )}
-                        </button>
+            <div className="container nav-inner">
+                <div className="nav-logo" onClick={() => scrollTo('home')}>MW<span className="dot">.</span></div>
+                <div className="nav-links-desktop">
+                    {links.map(l => (
+                        <button key={l.id} onClick={() => scrollTo(l.id)} className="nav-link">{l.label}</button>
                     ))}
-                    <div style={{ marginLeft: '1rem' }}>
-                        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-                    </div>
+                    <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
                 </div>
-
-                {/* Mobile Menu Button */}
-                <div className="mobile-menu-btn" style={{ display: 'none' }}>
-                    <button
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        style={{
-                            background: 'none',
-                            border: '1px solid var(--color-border)',
-                            borderRadius: 'var(--radius-sm)',
-                            width: '40px',
-                            height: '40px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            color: 'var(--color-text-primary)'
-                        }}
-                    >
-                        {isMobileMenuOpen ? (
-                            <X size={20} />
-                        ) : (
-                            <Menu size={20} />
-                        )}
-                    </button>
-                </div>
+                <button className="nav-mob-btn" onClick={() => setMobileOpen(!mobileOpen)}>
+                    {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+                </button>
             </div>
 
-            {/* Mobile Menu */}
             <AnimatePresence>
-                {isMobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="mobile-menu"
-                        style={{
-                            position: 'absolute' as const,
-                            top: '100%',
-                            left: '0',
-                            right: '0',
-                            background: 'var(--color-bg-primary)',
-                            borderBottom: '1px solid var(--color-border)',
-                            padding: '2rem 1.5rem',
-                            boxShadow: 'var(--shadow-lg)',
-                        }}
-                    >
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                            {navItems.map((item) => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => scrollToSection(item.id)}
-                                    style={{
-                                        display: 'block',
-                                        width: '100%',
-                                        background: 'none',
-                                        border: 'none',
-                                        color: activeSection === item.id ? 'var(--color-primary)' : 'var(--color-text-primary)',
-                                        fontSize: '0.8rem',
-                                        fontWeight: 700,
-                                        letterSpacing: '0.1em',
-                                        cursor: 'pointer',
-                                        textAlign: 'left',
-                                    }}
-                                >
-                                    {item.label}
-                                </button>
-                            ))}
-                            <div style={{ padding: '1rem 0', display: 'flex', justifyContent: 'flex-start', borderTop: '1px solid var(--color-border)' }}>
-                                <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-                            </div>
-                        </div>
+                {mobileOpen && (
+                    <motion.div className="mob-menu" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+                        {links.map(l => (
+                            <button key={l.id} onClick={() => scrollTo(l.id)} className="mob-link">{l.label}</button>
+                        ))}
+                        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
                     </motion.div>
                 )}
             </AnimatePresence>
 
             <style>{`
-                @media (max-width: 968px) {
-                    .desktop-nav {
-                        display: none !important;
-                    }
-                    .mobile-menu-btn {
-                        display: flex !important;
-                    }
+                .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 0; transition: all 0.4s; }
+                .nav--scrolled { padding: 0.75rem 0; background: var(--bg); border-bottom: 1px solid var(--border); }
+                .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+                .nav-logo { font-size: 1.2rem; font-weight: 900; cursor: pointer; color: var(--text); letter-spacing: -0.02em; }
+                .dot { color: var(--accent); }
+                .nav-links-desktop { display: flex; align-items: center; gap: 2.5rem; }
+                .nav-link {
+                    background: none; border: none; font-size: 0.65rem; font-weight: 700;
+                    color: var(--text-mute); cursor: pointer; letter-spacing: 0.15em;
+                    transition: color 0.3s; font-family: inherit;
+                }
+                .nav-link:hover { color: var(--accent); }
+                .nav-mob-btn {
+                    display: none; background: none; border: 1px solid var(--border);
+                    color: var(--text); width: 38px; height: 38px; align-items: center;
+                    justify-content: center; cursor: pointer; border-radius: var(--r-sm);
+                }
+                .mob-menu {
+                    position: absolute; top: 100%; left: 0; right: 0;
+                    background: var(--bg); border-bottom: 1px solid var(--border);
+                    padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem;
+                }
+                .mob-link {
+                    background: none; border: none; font-size: 0.8rem; font-weight: 700;
+                    color: var(--text-sec); cursor: pointer; text-align: left;
+                    letter-spacing: 0.1em; font-family: inherit;
+                }
+                @media (max-width: 768px) {
+                    .nav-links-desktop { display: none !important; }
+                    .nav-mob-btn { display: flex; }
                 }
             `}</style>
         </motion.nav>

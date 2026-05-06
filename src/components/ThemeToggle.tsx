@@ -10,35 +10,24 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, toggleTheme }) => {
     return (
         <button
             onClick={toggleTheme}
-            className="theme-toggle"
             aria-label="Toggle theme"
             style={{
-                background: 'var(--hud-bg)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid var(--hud-border)',
-                borderRadius: 'var(--radius-full)',
-                width: '40px',
-                height: '40px',
+                background: 'none',
+                border: '1px solid var(--border)',
+                borderRadius: 'var(--r-sm)',
+                width: '34px',
+                height: '34px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
+                color: 'var(--text-mute)',
                 transition: 'all 0.3s ease',
             }}
-            onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
-                e.currentTarget.style.transform = 'scale(1.1)';
-                e.currentTarget.style.borderColor = 'var(--color-primary)';
-            }}
-            onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.borderColor = 'var(--hud-border)';
-            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-mute)'; }}
         >
-            {theme === 'light' ? (
-                <Moon size={18} color="var(--color-primary)" />
-            ) : (
-                <Sun size={18} color="var(--color-accent-cyan)" />
-            )}
+            {theme === 'light' ? <Moon size={15} /> : <Sun size={15} />}
         </button>
     );
 };
