@@ -13,6 +13,7 @@ import {
     Layers,
     Search,
     Sparkles,
+    Package,
     LucideIcon
 } from 'lucide-react';
 
@@ -63,6 +64,12 @@ export interface Project {
     tags: string[];
     githubUrl: string;
     icon: LucideIcon;
+    /** Optional: short status badge, e.g. "Shipped v1" */
+    status?: string;
+    /** Optional: store / live URL (shown instead of GitHub icon when present) */
+    storeUrl?: string;
+    /** Optional: 2–4 short impact / highlights bullets */
+    highlights?: string[];
 }
 
 export interface PortfolioData {
@@ -211,6 +218,22 @@ export const portfolioData: PortfolioData = {
     ],
 
     projects: [
+        {
+            title: 'TabChest',
+            category: 'Browser Extension / Indie Product',
+            description: 'A local-first browser extension to save, organize, and restore tab workspaces. Supports cross-window capture, pinned-tab restore, workspace rename/delete with undo, JSON export/import, Light/Dark/System themes, and a Pro licensing flow with launch-offer support.',
+            tags: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'IndexedDB', 'Chrome Extension MV3'],
+            githubUrl: '',
+            status: 'Shipped v1',
+            highlights: [
+                'Save named workspaces from any tab selection — not just whole windows',
+                'Export to JSON and re-import with merge behavior (same-name updates, new names added)',
+                'Local-first storage — no tab data sent to any server',
+                'Pro licensing with buy / activate / deactivate and launch-offer support'
+            ],
+            icon: Package
+        },
+
         {
             title: "Diffusion-Based Virtual Try-On Pipeline(Final Year Project)",
             category: "Deep Learning Project",
