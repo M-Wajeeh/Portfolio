@@ -70,6 +70,8 @@ export interface Project {
     storeUrl?: string;
     /** Optional: 2–4 short impact / highlights bullets */
     highlights?: string[];
+    /** Optional: link to a privacy policy or legal page */
+    privacyUrl?: string;
 }
 
 export interface PortfolioData {
@@ -225,6 +227,7 @@ export const portfolioData: PortfolioData = {
             tags: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'IndexedDB', 'Chrome Extension MV3'],
             githubUrl: '',
             status: 'Shipped v1',
+            privacyUrl: '/tabchest/privacy.html',
             highlights: [
                 'Save named workspaces from any tab selection — not just whole windows',
                 'Export to JSON and re-import with merge behavior (same-name updates, new names added)',

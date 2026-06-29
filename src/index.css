@@ -3,7 +3,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Source Serif 4', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -15,38 +15,38 @@ body {
 
 /* === DARK THEME (default) === */
 :root {
-  --bg: #0a0a0b;
-  --bg-alt: #101011;
-  --bg-card: #151516;
-  --text: #e8e6e3;
-  --text-sec: #8a8a8a;
-  --text-mute: #505050;
-  --accent: #c8a55a;
-  --accent-hover: #d9b96b;
-  --border: #1c1c1d;
-  --border-hover: #2a2a2b;
-  --r: 10px;
-  --r-sm: 5px;
-  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --bg: #1C1917;
+  --bg-alt: #171412;
+  --bg-card: #292524;
+  --text: #FFFFFF;
+  --text-sec: #D6D3D1;
+  --text-mute: #A8A29E;
+  --accent: #A16207;
+  --accent-hover: #CA8A04;
+  --border: #44403C;
+  --border-hover: #57534E;
+  --r: 8px;
+  --r-sm: 4px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
 
 /* === LIGHT THEME === */
 [data-theme="light"] {
-  --bg: #f8f7f4;
-  --bg-alt: #efedea;
-  --bg-card: #e6e4e0;
-  --text: #1a1a1b;
-  --text-sec: #6b6b6b;
-  --text-mute: #999;
-  --accent: #9e8235;
-  --accent-hover: #887028;
-  --border: #d5d3d0;
-  --border-hover: #c0bdb8;
-  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --bg: #FAFAF9;
+  --bg-alt: #F5F5F4;
+  --bg-card: #FFFFFF;
+  --text: #0C0A09;
+  --text-sec: #44403C;
+  --text-mute: #78716C;
+  --accent: #A16207;
+  --accent-hover: #854D0E;
+  --border: #D6D3D1;
+  --border-hover: #A8A29E;
+  --shadow: 0 4px 24px rgba(0,0,0,0.05);
 }
 
 /* === TYPOGRAPHY === */
-h1, h2, h3, h4, h5, h6 { color: var(--text); font-weight: 700; line-height: 1.1; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; color: var(--text); font-weight: 700; line-height: 1.1; }
 a { text-decoration: none; color: inherit; }
 
 /* === LAYOUT === */
@@ -54,8 +54,8 @@ a { text-decoration: none; color: inherit; }
 
 /* === SECTION PATTERN === */
 .sec-num {
-  font-family: 'Courier New', monospace;
-  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
   color: var(--text-mute);
   letter-spacing: 0.25em;
   margin-bottom: 1.5rem;

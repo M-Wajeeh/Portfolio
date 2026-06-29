@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Github, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, Github, ExternalLink, ShieldCheck } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const Projects = () => {
@@ -47,6 +47,20 @@ const Projects = () => {
                                                 <li key={hi}>{h}</li>
                                             ))}
                                         </ul>
+                                    )}
+                                    {p.privacyUrl && (
+                                        <button
+                                            className="proj-privacy-link"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                window.open(p.privacyUrl, '_blank', 'noopener,noreferrer');
+                                            }}
+                                            aria-label="View privacy policy"
+                                        >
+                                            <ShieldCheck size={11} />
+                                            Privacy Policy
+                                        </button>
                                     )}
                                     <div className="proj-tags">
                                         {p.tags.slice(0, 5).map((t, i) => (
@@ -171,6 +185,29 @@ const Projects = () => {
                     transition: color 0.3s; padding-top: 0.25rem;
                 }
                 .proj-item:hover .proj-right { color: var(--accent); }
+                .proj-privacy-link {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.3rem;
+                    font-size: 0.65rem;
+                    font-weight: 600;
+                    color: var(--text-mute);
+                    text-decoration: none;
+                    background: transparent;
+                    border: 1px solid var(--border);
+                    padding: 0.18rem 0.5rem;
+                    border-radius: var(--r-sm);
+                    margin-bottom: 0.6rem;
+                    transition: color 0.2s, border-color 0.2s;
+                    width: fit-content;
+                    cursor: pointer;
+                    font-family: inherit;
+                    line-height: inherit;
+                }
+                .proj-privacy-link:hover {
+                    color: var(--accent);
+                    border-color: var(--accent);
+                }
                 @media (max-width: 768px) {
                     .projects { padding: 5rem 0; }
                     .proj-item { grid-template-columns: 1fr; gap: 1rem; align-items: start; }
