@@ -43,7 +43,7 @@ const About = () => {
                         </div>
 
                         <div className="about-tags">
-                            {['#DATA_ANALYSIS', '#MACHINE_LEARNING', '#GENERATIVE_AI', '#MLOPS'].map((tag, i) => (
+                            {['#ARTIFICIAL_INTELLIGENCE', '#MACHINE_LEARNING', '#GENERATIVE_AI', '#MLOPS'].map((tag, i) => (
                                 <span key={i} className="tag">{tag}</span>
                             ))}
                         </div>

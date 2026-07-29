@@ -93,7 +93,7 @@ export interface PortfolioData {
 export const portfolioData: PortfolioData = {
     personalInfo: {
         name: (import.meta as any).env.VITE_USER_NAME || "M. Wajeeh",
-        roles: ["Data Analyst", "ML Engineer", "AI Engineer"],
+        roles: ["ML Engineer", "AI Engineer"],
         email: (import.meta as any).env.VITE_USER_EMAIL || "contact@example.com",
         github: (import.meta as any).env.VITE_USER_GITHUB || "https://github.com/",
         linkedin: (import.meta as any).env.VITE_USER_LINKEDIN || "https://linkedin.com/in/",
@@ -101,13 +101,13 @@ export const portfolioData: PortfolioData = {
         resumeUrl: (import.meta as any).env.VITE_USER_RESUME_URL || (import.meta as any).env.VITE_USER_RESUME_PRIMARY_URL || "/AI-ML.pdf",
         resumePrimaryLabel: (import.meta as any).env.VITE_USER_RESUME_PRIMARY_LABEL || "AI/ML",
         resumePrimaryUrl: (import.meta as any).env.VITE_USER_RESUME_PRIMARY_URL || "/AI-ML.pdf",
-        resumeSecondaryLabel: (import.meta as any).env.VITE_USER_RESUME_SECONDARY_LABEL || "Data Analytics",
-        resumeSecondaryUrl: (import.meta as any).env.VITE_USER_RESUME_SECONDARY_URL || "/DataAnalytics-Wajeeh.pdf",
+        resumeSecondaryLabel: (import.meta as any).env.VITE_USER_RESUME_SECONDARY_LABEL || "",
+        resumeSecondaryUrl: (import.meta as any).env.VITE_USER_RESUME_SECONDARY_URL || "",
         twitter: "",
         status: "ACCEPTING PROJECTS",
         tagline: "Engineering intelligent systems that solve real-world problems",
-        subTagline: "AI Graduate with hands-on experience in ML Engineering, Data Analytics, and Generative AI.",
-        bio: "I'm an AI graduate who builds machine learning systems that actually make it to production. I work across data analysis, ML engineering, and more recently, generative AI, from end-to-end ML pipelines with Docker and AWS to LLM-powered applications using LangChain and RAG. I care about building systems that aren't just smart, but reliable and ready for the real world."
+        subTagline: "AI Graduate with hands-on experience in ML Engineering and Generative AI.",
+        bio: "I'm an AI graduate who builds machine learning systems that actually make it to production. I work across ML engineering and generative AI, from end-to-end ML pipelines with Docker to LLM-powered applications using LangChain and RAG. I care about building systems that aren't just smart, but reliable and ready for the real world."
     },
 
     stats: [
@@ -147,7 +147,7 @@ export const portfolioData: PortfolioData = {
             {
                 title: 'MLOPS & DEPLOYMENT',
                 icon: Settings,
-                skills: ['ML Pipelines', 'Model Versioning', 'CI/CD for ML', 'Docker', 'DVC', 'MLflow', 'GitHub Actions', 'FastAPI', 'AWS (EC2/S3)']
+                skills: ['ML Pipelines', 'Model Versioning', 'CI/CD for ML', 'Docker', 'DVC', 'MLflow', 'GitHub Actions']
             },
             {
                 title: 'PROGRAMMING & TOOLS',
@@ -165,10 +165,19 @@ export const portfolioData: PortfolioData = {
                 skills: ['Problem Solving', 'Technical Communication', 'Stakeholder Collaboration', 'Teamwork', 'Project Management']
             }
         ],
-        marquee: ['Python', 'SQL', 'TensorFlow', 'PyTorch', 'LangChain', 'LLMs', 'RAG', 'LangGraph', 'Docker', 'AWS', 'Power BI', 'Tableau', 'Pandas', 'NumPy', 'Scikit-learn', 'FastAPI', 'Git', 'MLflow', 'DVC']
+        marquee: ['Python', 'SQL', 'TensorFlow', 'PyTorch', 'LangChain', 'LLMs', 'RAG', 'LangGraph', 'Docker', 'Power BI', 'Tableau', 'Pandas', 'NumPy', 'Scikit-learn', 'Git', 'MLflow', 'DVC']
     },
 
     experience: [
+        {
+            type: 'Internship',
+            title: 'AI Intern',
+            company: 'CESAI (Center of Excellence for Simulators and AI) - CEME NUST, Rawalpindi',
+            period: 'July 2026 - Present',
+            description: `• Working on AI development and intelligent system simulation at CESAI.
+                            • Applied machine learning algorithms and computer vision techniques for simulation frameworks.`,
+            tags: ['Artificial Intelligence', 'Simulators', 'Machine Learning', 'Computer Vision']
+        },
         {
             type: 'Speaking',
             title: 'Guest Speaker - Vyrothon Journey & AI Development',
@@ -190,32 +199,12 @@ export const portfolioData: PortfolioData = {
             tags: ['AI Voice Agent', 'LLMs', 'Hackathon', 'Real Estate AI', 'Teamwork']
         },
         {
-            type: 'Internship',
-            title: 'Data Science Intern',
-            company: 'Elevvo pathways',
-            period: 'July 2025 - Aug 2025',
-            description: `• Data preprocessing & EDA
-                            • Classification & regression modeling
-                            • Statistical analysis & visualization`,
-            tags: ['Python', 'EDA', 'Classification', 'Regression', 'Statistical Analysis', 'Visualization']
-        },
-        {
-            type: 'Job simulation',
-            title: 'Data Analytics',
-            company: 'Deloitte',
-            period: 'September 2025 - October 2025',
-            description: `  • Cleaned and analyzed raw business datasets using Excel to ensure data accuracy and consistency.
-                            • Built an interactive Tableau dashboard to highlight key trends and KPIs for decision-making.
-                            • Presented insights in a clear, business-focused manner for non-technical stakeholders.`,
-            tags: ['Excel', 'Tableau', 'Data Analysis', 'Data cleaning', 'Business Insights']
-        },
-        {
             type: 'EDU',
             title: 'BS Artificial Intelligence',
             company: 'National University of Modern Languages,Islamabad ',
             period: '2022 - 2026',
-            description: 'Bachelor’s in Artificial Intelligence with a strong focus on data analysis, machine learning, and applied AI systems.',
-            tags: ['Artificial Intelligence', 'Data Analysis', 'Machine Learning', 'Applied AI']
+            description: 'Bachelor’s in Artificial Intelligence with a strong focus on machine learning and applied AI systems.',
+            tags: ['Artificial Intelligence', 'Machine Learning', 'Applied AI']
         }
     ],
 
@@ -241,7 +230,7 @@ export const portfolioData: PortfolioData = {
             title: "Diffusion-Based Virtual Try-On Pipeline(Final Year Project)",
             category: "Deep Learning Project",
             description: "Built an end-to-end AI pipeline for virtual garment fitting using diffusion models, agnostic human parsing, tensor preprocessing, and chatbot-assisted interaction. Designed backend integration with Firebase for authentication and data handling.",
-            tags: ["Diffusers", "PyTorch", "Image Processing", "Human Parsing", "MLOps", "FastAPI", "Firebase"],
+            tags: ["Diffusers", "PyTorch", "Image Processing", "Human Parsing", "MLOps", "Firebase"],
             githubUrl: "https://github.com/M-Wajeeh/Final-Year-Project",
             icon: Shirt
         },
@@ -249,8 +238,8 @@ export const portfolioData: PortfolioData = {
         {
             title: 'Vehicle Insurance MLOps Pipeline',
             category: 'MLOps / Machine Learning Deployment',
-            description: 'A production-grade end-to-end MLOps pipeline that demonstrates how machine learning systems are designed, deployed, and maintained in real-world environments. The project covers the full lifecycle, from cloud-based data ingestion and validation to automated model deployment using Docker, AWS, and CI/CD workflows. This project emphasizes modular architecture, reproducibility, and production-ready ML engineering practices.',
-            tags: ['MLOps', 'Machine Learning Deployment', 'Docker', 'AWS', 'CI/CD', 'Data Ingestion', 'Data Validation', 'Model Deployment', 'Modular Architecture', 'Reproducibility', 'Production-Ready ML Engineering Practices'],
+            description: 'A production-grade end-to-end MLOps pipeline that demonstrates how machine learning systems are designed, deployed, and maintained in real-world environments. The project covers the full lifecycle, from cloud-based data ingestion and validation to automated model deployment using Docker and CI/CD workflows. This project emphasizes modular architecture, reproducibility, and production-ready ML engineering practices.',
+            tags: ['MLOps', 'Machine Learning Deployment', 'Docker', 'CI/CD', 'Data Ingestion', 'Data Validation', 'Model Deployment', 'Modular Architecture', 'Reproducibility', 'Production-Ready ML Engineering Practices'],
             githubUrl: "https://github.com/M-Wajeeh/mlops-vehicle-insurance-pipeline",
             icon: Layers
         },
@@ -271,26 +260,10 @@ export const portfolioData: PortfolioData = {
             icon: Brain
         },
         {
-            title: 'Customer Analytics & KPI Reporting using SQL',
-            category: 'Analytics Engineering / SQL Data Modeling',
-            description: 'An advanced SQL analytics project that builds a customer-level reporting view by consolidating raw transactional data into meaningful KPIs and segments. The project uses SQL views, CTEs, and window functions to create an analytics-ready dataset that can be directly consumed by BI tools such as Power BI or Tableau for business decision-making.',
-            tags: ['SQL', 'Power BI', 'Tableau', 'CTEs', 'Window Functions'],
-            githubUrl: "https://github.com/M-Wajeeh/sql-customer-analytics",
-            icon: Database
-        },
-        {
-            title: 'Asia Cup Cricket Analytics Dashboard (Power BI)',
-            category: 'Data Analysis / Business Intelligence',
-            description: 'An interactive Power BI dashboard that analyzes historical Asia Cup cricket data, providing insights into team performance, player contributions, and tournament trends. The report features synced slicers across pages, dynamic visuals, and KPI summaries to enable intuitive data exploration and decision-making.',
-            tags: ['Power BI', 'Data Analysis', 'Business Intelligence', 'Interactive Visualizations', 'Drill-down Capabilities', 'Drill-through Functionality'],
-            githubUrl: "https://github.com/M-Wajeeh/asia-cup-powerbi-report",
-            icon: BarChart3
-        },
-        {
             title: 'end-to-end-telco-churn-ml',
             category: 'Machine Learning/Machine Learning Operations',
-            description: 'End-to-end MLOps project for predicting telecom customer churn using FastAPI, Docker, github actions, with MLflow tracking and a web UI for real-time inference.',
-            tags: ['Machine Learning', 'Machine Learning Operations', 'FastAPI', 'Docker', 'GitHub Actions', 'MLflow', 'Web UI', 'Real-time Inference'],
+            description: 'End-to-end MLOps project for predicting telecom customer churn using Docker, GitHub Actions, with MLflow tracking and a web UI for real-time inference.',
+            tags: ['Machine Learning', 'Machine Learning Operations', 'Docker', 'GitHub Actions', 'MLflow', 'Web UI', 'Real-time Inference'],
             githubUrl: "https://github.com/M-Wajeeh/end-to-end-telco-churn-ml",
             icon: Layers
         },

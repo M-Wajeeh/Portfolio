@@ -46,29 +46,41 @@ const Hero = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.1 }}
                     >
-                        <details className="resume-dd">
-                            <summary className="btn-accent">GET RESUME</summary>
-                            <div className="resume-dd-menu">
-                                <a
-                                    href={portfolioData.personalInfo.resumePrimaryUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="resume-dd-item"
-                                    onClick={(e) => { (e.currentTarget.closest('details') as HTMLDetailsElement | null)?.removeAttribute('open'); }}
-                                >
-                                    {portfolioData.personalInfo.resumePrimaryLabel}
-                                </a>
-                                <a
-                                    href={portfolioData.personalInfo.resumeSecondaryUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="resume-dd-item"
-                                    onClick={(e) => { (e.currentTarget.closest('details') as HTMLDetailsElement | null)?.removeAttribute('open'); }}
-                                >
-                                    {portfolioData.personalInfo.resumeSecondaryLabel}
-                                </a>
-                            </div>
-                        </details>
+                        {portfolioData.personalInfo.resumeSecondaryUrl && portfolioData.personalInfo.resumeSecondaryLabel ? (
+                            <details className="resume-dd">
+                                <summary className="btn-accent">GET RESUME</summary>
+                                <div className="resume-dd-menu">
+                                    <a
+                                        href={portfolioData.personalInfo.resumePrimaryUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="resume-dd-item"
+                                        onClick={(e) => { (e.currentTarget.closest('details') as HTMLDetailsElement | null)?.removeAttribute('open'); }}
+                                    >
+                                        {portfolioData.personalInfo.resumePrimaryLabel}
+                                    </a>
+                                    <a
+                                        href={portfolioData.personalInfo.resumeSecondaryUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="resume-dd-item"
+                                        onClick={(e) => { (e.currentTarget.closest('details') as HTMLDetailsElement | null)?.removeAttribute('open'); }}
+                                    >
+                                        {portfolioData.personalInfo.resumeSecondaryLabel}
+                                    </a>
+                                </div>
+                            </details>
+                        ) : (
+                            <a
+                                href={portfolioData.personalInfo.resumePrimaryUrl || portfolioData.personalInfo.resumeUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-accent"
+                                style={{ textDecoration: 'none' }}
+                            >
+                                GET RESUME
+                            </a>
+                        )}
                         <button className="btn-ghost" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
                             VIEW WORK
                         </button>
