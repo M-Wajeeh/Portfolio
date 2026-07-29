@@ -268,6 +268,20 @@ export const portfolioData: PortfolioData = {
             icon: Layers
         },
         {
+            title: 'ResearchMind — Multi-Agent AI Research System',
+            category: 'GenAI / Multi-Agent AI Systems',
+            description: 'A fully autonomous multi-agent AI pipeline built with LangChain, LangGraph, and Streamlit. Given a topic, 6 specialized AI agents (Search, Reader, Writer, Critic, Verification, Revision) collaborate to search the web, scrape sources, draft, score, fact-check, and produce a polished research report with live pipeline UI tracking.',
+            tags: ['GenAI', 'Multi-Agent Systems', 'LangChain', 'LangGraph', 'Streamlit', 'OpenAI', 'Tavily', 'Python'],
+            githubUrl: 'https://github.com/M-Wajeeh/ResearchMind',
+            icon: Sparkles,
+            highlights: [
+                'Autonomous 6-agent pipeline: search → scrape → write → critique → verify → revise',
+                'Smart web scraping with bot-detection bypass, noise filtering, and sentence boundary truncation',
+                'Fact-checking verification chain that cross-references claims against raw scraped evidence',
+                'Live Streamlit UI with real-time step status animation and one-click Markdown export'
+            ]
+        },
+        {
             title: 'RAG Insight Engine',
             category: 'GenAI / Retrieval-Augmented Generation',
             description: 'Modular RAG system for grounded document Q&A. Features pluggable loaders, recursive chunking, HuggingFace embeddings, a persistent Chroma vector store, and a citation-aware Groq LLM generator. Includes a Streamlit UI and an evaluation harness for measuring retrieval accuracy.',
