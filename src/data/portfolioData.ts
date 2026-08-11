@@ -14,6 +14,7 @@ import {
     Search,
     Sparkles,
     Package,
+    Video,
     LucideIcon
 } from 'lucide-react';
 
@@ -288,7 +289,20 @@ export const portfolioData: PortfolioData = {
             tags: ['GenAI', 'RAG', 'LangChain', 'ChromaDB', 'HuggingFace', 'Groq', 'Streamlit', 'Python', 'Evaluation Harness'],
             githubUrl: "https://github.com/M-Wajeeh/RAG-Insight-Engine",
             icon: Search
+        },
+        {
+            title: 'Video Agent - AI Video & Meeting Assistant',
+            category: 'GenAI / Multilingual Video Intelligence & RAG',
+            description: 'An intelligent, end-to-end AI video and meeting intelligence system built with Python, LangChain, OpenAI Whisper & GPT-4o-mini, and ChromaDB. Ingests YouTube URLs or local media, normalizes audio to 16kHz mono WAV via FFmpeg, transcribes multilingual speech (English, Urdu with Perso-Arabic prompt guard, Hinglish), generates Map-Reduce summaries & action items, and powers an interactive conversational RAG assistant.',
+            tags: ['GenAI', 'RAG', 'LangChain LCEL', 'OpenAI Whisper', 'ChromaDB', 'FFmpeg', 'yt-dlp', 'Python'],
+            githubUrl: 'https://github.com/M-Wajeeh/meetingmind',
+            icon: Video,
+            highlights: [
+                'Flexible ingestion: YouTube download with anti-bot bypass (yt-dlp) + 16kHz mono WAV chunking via FFmpeg',
+                'Multilingual STT engine routing: OpenAI Whisper API (Perso-Arabic script guard for Urdu), ElevenLabs Scribe v2, Sarvam AI & local Whisper',
+                'Automated Map-Reduce summarization (gpt-4o-mini) & structured extraction of Action Items, Key Decisions, and Open Questions',
+                'Interactive LCEL Conversational RAG with auto-resetting ChromaDB vector store to eliminate cross-video context contamination'
+            ]
         }
-
     ]
 };
