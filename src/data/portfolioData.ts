@@ -99,9 +99,9 @@ export const portfolioData: PortfolioData = {
         github: (import.meta as any).env.VITE_USER_GITHUB || "https://github.com/",
         linkedin: (import.meta as any).env.VITE_USER_LINKEDIN || "https://linkedin.com/in/",
         // Backward-compatible single resume URL (defaults to the primary resume)
-        resumeUrl: (import.meta as any).env.VITE_USER_RESUME_URL || (import.meta as any).env.VITE_USER_RESUME_PRIMARY_URL || "/AI_Engineer_RESUME_WAJEEH.pdf",
+        resumeUrl: (import.meta as any).env.VITE_USER_RESUME_URL || (import.meta as any).env.VITE_USER_RESUME_PRIMARY_URL || "/AI_Engineer_Wajeeh.pdf",
         resumePrimaryLabel: (import.meta as any).env.VITE_USER_RESUME_PRIMARY_LABEL || "AI / ML",
-        resumePrimaryUrl: (import.meta as any).env.VITE_USER_RESUME_PRIMARY_URL || "/AI_Engineer_RESUME_WAJEEH.pdf",
+        resumePrimaryUrl: (import.meta as any).env.VITE_USER_RESUME_PRIMARY_URL || "/AI_Engineer_Wajeeh.pdf",
         resumeSecondaryLabel: (import.meta as any).env.VITE_USER_RESUME_SECONDARY_LABEL || "Data Analytics",
         resumeSecondaryUrl: (import.meta as any).env.VITE_USER_RESUME_SECONDARY_URL || "/DataAnalytics-Wajeeh.pdf",
         twitter: "",
