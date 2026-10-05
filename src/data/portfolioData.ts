@@ -15,6 +15,7 @@ import {
     Sparkles,
     Package,
     Video,
+    Cat,
     LucideIcon
 } from 'lucide-react';
 
@@ -73,6 +74,10 @@ export interface Project {
     highlights?: string[];
     /** Optional: link to a privacy policy or legal page */
     privacyUrl?: string;
+    /** Optional: custom logo image URL (e.g. extension icon) */
+    logoImg?: string;
+    /** Optional: creator role summary */
+    role?: string;
 }
 
 export interface PortfolioData {
@@ -88,6 +93,8 @@ export interface PortfolioData {
         marquee: string[];
     };
     experience: Experience[];
+    aiProjects: Project[];
+    extensionProjects: Project[];
     projects: Project[];
 }
 
@@ -209,44 +216,26 @@ export const portfolioData: PortfolioData = {
         }
     ],
 
-    projects: [
+    aiProjects: [
         {
-            title: 'TabChest',
-            category: 'Browser Extension / Indie Product',
-            description: 'A local-first browser extension to save, organize, and restore tab workspaces. Supports cross-window capture, pinned-tab restore, workspace rename/delete with undo, JSON export/import, Light/Dark/System themes, and a Pro licensing flow with launch-offer support.',
-            tags: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'IndexedDB', 'Chrome Extension MV3'],
-            githubUrl: '',
-            status: 'Shipped v1',
-            privacyUrl: '/tabchest/privacy.html',
-            highlights: [
-                'Save named workspaces from any tab selection — not just whole windows',
-                'Export to JSON and re-import with merge behavior (same-name updates, new names added)',
-                'Local-first storage — no tab data sent to any server',
-                'Pro licensing with buy / activate / deactivate and launch-offer support'
-            ],
-            icon: Package
-        },
-
-        {
-            title: "Diffusion-Based Virtual Try-On Pipeline(Final Year Project)",
+            title: "Diffusion-Based Virtual Try-On Pipeline (Final Year Project)",
             category: "Deep Learning Project",
             description: "Built an end-to-end AI pipeline for virtual garment fitting using diffusion models, agnostic human parsing, tensor preprocessing, and chatbot-assisted interaction. Designed backend integration with Firebase for authentication and data handling.",
             tags: ["Diffusers", "PyTorch", "Image Processing", "Human Parsing", "MLOps", "Firebase"],
             githubUrl: "https://github.com/M-Wajeeh/Final-Year-Project",
             icon: Shirt
         },
-
         {
             title: 'Vehicle Insurance MLOps Pipeline',
             category: 'MLOps / Machine Learning Deployment',
-            description: 'A production-grade end-to-end MLOps pipeline that demonstrates how machine learning systems are designed, deployed, and maintained in real-world environments. The project covers the full lifecycle, from cloud-based data ingestion and validation to automated model deployment using Docker and CI/CD workflows. This project emphasizes modular architecture, reproducibility, and production-ready ML engineering practices.',
+            description: 'A production-grade end-to-end MLOps pipeline that demonstrates how machine learning systems are designed, deployed, and maintained in real-world environments. The project covers the full lifecycle, from cloud-based data ingestion and validation to automated model deployment using Docker and CI/CD workflows. Emphasizes modular architecture, reproducibility, and production-ready ML engineering practices.',
             tags: ['MLOps', 'Machine Learning Deployment', 'Docker', 'CI/CD', 'Data Ingestion', 'Data Validation', 'Model Deployment', 'Modular Architecture', 'Reproducibility', 'Production-Ready ML Engineering Practices'],
             githubUrl: "https://github.com/M-Wajeeh/mlops-vehicle-insurance-pipeline",
             icon: Layers
         },
         {
             title: 'end-to-end-purchase-prediction-ml',
-            category: 'Machine Learning/MLOps',
+            category: 'Machine Learning / MLOps',
             description: 'Production-style ML pipeline for online purchase prediction with modular components (ingestion → transformation → training), XGBoost modeling, config-driven architecture, structured logging, and DVC-based reproducibility.',
             tags: [
                 'Machine Learning',
@@ -262,7 +251,7 @@ export const portfolioData: PortfolioData = {
         },
         {
             title: 'end-to-end-telco-churn-ml',
-            category: 'Machine Learning/Machine Learning Operations',
+            category: 'Machine Learning / Machine Learning Operations',
             description: 'End-to-end MLOps project for predicting telecom customer churn using Docker, GitHub Actions, with MLflow tracking and a web UI for real-time inference.',
             tags: ['Machine Learning', 'Machine Learning Operations', 'Docker', 'GitHub Actions', 'MLflow', 'Web UI', 'Real-time Inference'],
             githubUrl: "https://github.com/M-Wajeeh/end-to-end-telco-churn-ml",
@@ -304,5 +293,48 @@ export const portfolioData: PortfolioData = {
                 'Interactive LCEL Conversational RAG with auto-resetting ChromaDB vector store to eliminate cross-video context contamination'
             ]
         }
-    ]
+    ],
+
+    extensionProjects: [
+        {
+            title: 'Swatcat',
+            category: 'Chrome Extension (MV3) / Digital Wellbeing',
+            description: 'A cute, open-source companion that keeps your social media time in check. Features a gentle 5-second pause before opening feeds, a shared daily limit, escalating cat reactions (staring, lying across the page, batting), and a swift swat that closes the tab when time expires. 100% private with zero network requests.',
+            tags: ['Vanilla JavaScript', 'HTML & CSS', 'Chrome Extension MV3', 'declarativeNetRequest', 'Shadow DOM', 'E2E Testing', 'MIT License'],
+            githubUrl: '',
+            status: 'Submitted for Review',
+            privacyUrl: '/swatcat/privacy.html',
+            logoImg: '/swatcat/icon-128.png',
+            role: 'Solo project: product idea, design and development',
+            highlights: [
+                'Animated SVG cat rendered inside a closed Shadow DOM so it never interferes with host pages',
+                'One shared daily limit across social sites using declarativeNetRequest blocking (no browsing traffic inspected)',
+                'Escalating cat behavior: mindful pause, typing detection, 1-min warnings, and playful swat-to-close',
+                'Private by design: zero network requests, no analytics, no accounts — all data stays on device'
+            ],
+            icon: Cat
+        },
+        {
+            title: 'TabChest',
+            category: 'Browser Extension / Indie Product',
+            description: 'A local-first browser extension to save, organize, and restore tab workspaces. Supports cross-window capture, pinned-tab restore, workspace rename/delete with undo, JSON export/import, Light/Dark/System themes, and a Pro licensing flow with launch-offer support.',
+            tags: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'IndexedDB', 'Chrome Extension MV3'],
+            githubUrl: '',
+            status: 'Shipped v1',
+            privacyUrl: '/tabchest/privacy.html',
+            role: 'Solo project: product architecture, development & licensing flow',
+            highlights: [
+                'Save named workspaces from any tab selection — not just whole windows',
+                'Export to JSON and re-import with merge behavior (same-name updates, new names added)',
+                'Local-first storage — no tab data sent to any server',
+                'Pro licensing with buy / activate / deactivate and launch-offer support'
+            ],
+            icon: Package
+        }
+    ],
+
+    // Backward compatibility: combined list of all projects
+    get projects() {
+        return [...this.aiProjects, ...this.extensionProjects];
+    }
 };

@@ -1,90 +1,245 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Github, ExternalLink, ShieldCheck } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { ArrowUpRight, Github, ExternalLink, ShieldCheck, Brain, Chrome } from 'lucide-react';
+import { portfolioData, Project } from '../data/portfolioData';
 
 const Projects = () => {
-    const projects = portfolioData.projects;
+    const { aiProjects, extensionProjects } = portfolioData;
+
+    const renderProjectItem = (p: Project, idx: number, prefix: string = '') => {
+        const Icon = p.icon;
+        const href = p.storeUrl || p.githubUrl || '#';
+        const hasLink = !!(p.storeUrl || p.githubUrl);
+
+        return (
+            <motion.a
+                key={p.title + idx}
+                href={href}
+                target={hasLink ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className={`proj-item${p.status ? ' proj-item--featured' : ''}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                onClick={!hasLink ? (e) => e.preventDefault() : undefined}
+                style={!hasLink ? { cursor: 'default' } : undefined}
+            >
+                <div className="proj-left">
+                    <span className="proj-num">{prefix}{String(idx + 1).padStart(2, '0')}</span>
+                    <div className="proj-icon-wrap">
+                        {p.logoImg ? (
+                            <img src={p.logoImg} alt={p.title} className="proj-logo-img" />
+                        ) : (
+                            <Icon size={24} />
+                        )}
+                    </div>
+                </div>
+                <div className="proj-center">
+                    <div className="proj-meta-row">
+                        <span className="proj-cat">{p.category}</span>
+                        {p.role && <span className="proj-role-tag">{p.role}</span>}
+                    </div>
+                    <div className="proj-name-row">
+                        <h3 className="proj-name">{p.title}</h3>
+                        {p.status && <span className="proj-badge">{p.status}</span>}
+                    </div>
+                    <p className="proj-desc">{p.description}</p>
+                    {p.highlights && p.highlights.length > 0 && (
+                        <ul className="proj-highlights">
+                            {p.highlights.map((h, hi) => (
+                                <li key={hi}>{h}</li>
+                            ))}
+                        </ul>
+                    )}
+                    {p.privacyUrl && (
+                        <button
+                            type="button"
+                            className="proj-privacy-link"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                window.open(p.privacyUrl, '_blank', 'noopener,noreferrer');
+                            }}
+                            aria-label={`View ${p.title} privacy policy`}
+                        >
+                            <ShieldCheck size={12} />
+                            Privacy Policy
+                        </button>
+                    )}
+                    <div className="proj-tags">
+                        {p.tags.slice(0, 6).map((t, i) => (
+                            <span key={i} className="proj-tag">{t}</span>
+                        ))}
+                        {p.tags.length > 6 && <span className="proj-tag">+{p.tags.length - 6}</span>}
+                    </div>
+                </div>
+                <div className="proj-right">
+                    {p.storeUrl
+                        ? <ExternalLink size={16} />
+                        : <Github size={16} />
+                    }
+                    {hasLink && <ArrowUpRight size={16} />}
+                </div>
+            </motion.a>
+        );
+    };
 
     return (
         <section id="projects" className="projects">
             <div className="container">
                 <span className="sec-num">03 // WORK</span>
-                <h2 className="sec-title">SELECTED <span className="hl">PROJECTS.</span></h2>
+                <h2 className="sec-title">SELECTED <span className="hl">PROJECTS & PRODUCTS.</span></h2>
 
-                <div className="proj-list">
-                    {projects.map((p, idx) => {
-                        const Icon = p.icon;
-                        const href = p.storeUrl || p.githubUrl || '#';
-                        const hasLink = !!(p.storeUrl || p.githubUrl);
-                        return (
-                            <motion.a
-                                key={idx}
-                                href={href}
-                                target={hasLink ? "_blank" : undefined}
-                                rel="noopener noreferrer"
-                                className={`proj-item${p.status ? ' proj-item--featured' : ''}`}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: idx * 0.06 }}
-                                onClick={!hasLink ? (e) => e.preventDefault() : undefined}
-                                style={!hasLink ? { cursor: 'default' } : undefined}
-                            >
-                                <div className="proj-left">
-                                    <span className="proj-num">{String(idx + 1).padStart(2, '0')}</span>
-                                    <div className="proj-icon-wrap"><Icon size={24} /></div>
-                                </div>
-                                <div className="proj-center">
-                                    <span className="proj-cat">{p.category}</span>
-                                    <div className="proj-name-row">
-                                        <h3 className="proj-name">{p.title}</h3>
-                                        {p.status && <span className="proj-badge">{p.status}</span>}
-                                    </div>
-                                    <p className="proj-desc">{p.description}</p>
-                                    {p.highlights && p.highlights.length > 0 && (
-                                        <ul className="proj-highlights">
-                                            {p.highlights.map((h, hi) => (
-                                                <li key={hi}>{h}</li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                    {p.privacyUrl && (
-                                        <button
-                                            className="proj-privacy-link"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                e.stopPropagation();
-                                                window.open(p.privacyUrl, '_blank', 'noopener,noreferrer');
-                                            }}
-                                            aria-label="View privacy policy"
-                                        >
-                                            <ShieldCheck size={11} />
-                                            Privacy Policy
-                                        </button>
-                                    )}
-                                    <div className="proj-tags">
-                                        {p.tags.slice(0, 5).map((t, i) => (
-                                            <span key={i} className="proj-tag">{t}</span>
-                                        ))}
-                                        {p.tags.length > 5 && <span className="proj-tag">+{p.tags.length - 5}</span>}
-                                    </div>
-                                </div>
-                                <div className="proj-right">
-                                    {p.storeUrl
-                                        ? <ExternalLink size={16} />
-                                        : <Github size={16} />
-                                    }
-                                    {hasLink && <ArrowUpRight size={16} />}
-                                </div>
-                            </motion.a>
-                        );
-                    })}
+                {/* Sub-navigation jump pills */}
+                <div className="work-nav-pills">
+                    <button
+                        type="button"
+                        className="work-pill"
+                        onClick={() => document.getElementById('ai-systems')?.scrollIntoView({ behavior: 'smooth' })}
+                    >
+                        <Brain size={14} />
+                        <span>AI & ML Systems ({aiProjects.length})</span>
+                    </button>
+                    <button
+                        type="button"
+                        className="work-pill work-pill--ext"
+                        onClick={() => document.getElementById('chrome-extensions')?.scrollIntoView({ behavior: 'smooth' })}
+                    >
+                        <Chrome size={14} />
+                        <span>Chrome Extensions ({extensionProjects.length})</span>
+                    </button>
+                </div>
+
+                {/* Subsection 1: AI & ML */}
+                <div id="ai-systems" className="subsection-block">
+                    <div className="subsection-header">
+                        <div className="subsection-header-top">
+                            <span className="subsection-badge">01 // MACHINE LEARNING & AI</span>
+                            <span className="subsection-count">{aiProjects.length} Projects</span>
+                        </div>
+                        <h3 className="subsection-heading">AI & MACHINE LEARNING SYSTEMS</h3>
+                        <p className="subsection-desc">
+                            Production-grade machine learning pipelines, LLM-powered multi-agent architectures, and end-to-end deep learning systems.
+                        </p>
+                    </div>
+
+                    <div className="proj-list">
+                        {aiProjects.map((p, idx) => renderProjectItem(p, idx, ''))}
+                    </div>
+                </div>
+
+                {/* Subsection 2: Chrome Extensions */}
+                <div id="chrome-extensions" className="subsection-block subsection-block--ext">
+                    <div className="subsection-header subsection-header--ext">
+                        <div className="subsection-header-top">
+                            <span className="subsection-badge subsection-badge--ext">02 // CLIENT-SIDE PRODUCTS</span>
+                            <span className="subsection-count subsection-count--ext">{extensionProjects.length} Extensions</span>
+                        </div>
+                        <h3 className="subsection-heading">CHROME WEB EXTENSIONS</h3>
+                        <p className="subsection-desc">
+                            Privacy-first browser extensions built with Manifest V3, zero remote tracking, and strictly local storage.
+                        </p>
+                    </div>
+
+                    <div className="proj-list">
+                        {extensionProjects.map((p, idx) => renderProjectItem(p, idx, 'EXT-'))}
+                    </div>
                 </div>
             </div>
 
             <style>{`
                 .projects { padding: 8rem 0; }
-                .proj-list { display: flex; flex-direction: column; gap: 1px; margin-top: 1rem; }
+
+                /* Jump pills */
+                .work-nav-pills {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                    margin: 1.5rem 0 3rem 0;
+                    flex-wrap: wrap;
+                }
+                .work-pill {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0.45rem 1rem;
+                    background: var(--bg-alt);
+                    border: 1px solid var(--border);
+                    border-radius: var(--r);
+                    color: var(--text-sec);
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    letter-spacing: 0.05em;
+                    cursor: pointer;
+                    transition: all 0.25s ease;
+                    font-family: inherit;
+                }
+                .work-pill:hover {
+                    color: var(--accent);
+                    border-color: var(--accent);
+                    transform: translateY(-2px);
+                }
+                .work-pill--ext:hover {
+                    color: var(--accent);
+                    border-color: var(--accent);
+                }
+
+                /* Subsections */
+                .subsection-block {
+                    margin-bottom: 5rem;
+                }
+                .subsection-block--ext {
+                    margin-top: 4rem;
+                    padding-top: 3.5rem;
+                    border-top: 1px dashed var(--border);
+                }
+                .subsection-header {
+                    margin-bottom: 2rem;
+                }
+                .subsection-header-top {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 0.5rem;
+                }
+                .subsection-badge {
+                    font-family: 'JetBrains Mono', 'Courier New', monospace;
+                    font-size: 0.68rem;
+                    font-weight: 700;
+                    letter-spacing: 0.15em;
+                    color: var(--accent);
+                    text-transform: uppercase;
+                }
+                .subsection-badge--ext {
+                    color: var(--accent);
+                }
+                .subsection-count {
+                    font-family: 'JetBrains Mono', 'Courier New', monospace;
+                    font-size: 0.68rem;
+                    font-weight: 600;
+                    color: var(--text-mute);
+                    padding: 0.15rem 0.5rem;
+                    background: var(--bg-alt);
+                    border: 1px solid var(--border);
+                    border-radius: var(--r-sm);
+                }
+                .subsection-heading {
+                    font-size: 1.45rem;
+                    font-weight: 800;
+                    letter-spacing: -0.02em;
+                    color: var(--text);
+                    margin: 0 0 0.4rem 0;
+                }
+                .subsection-desc {
+                    font-size: 0.85rem;
+                    color: var(--text-mute);
+                    line-height: 1.5;
+                    max-width: 680px;
+                    margin: 0;
+                }
+
+                /* Project Cards */
+                .proj-list { display: flex; flex-direction: column; gap: 1px; }
                 .proj-item {
                     display: grid;
                     grid-template-columns: 100px 1fr 60px;
@@ -111,7 +266,7 @@ const Projects = () => {
                     align-items: center; gap: 0.75rem; padding-top: 0.25rem;
                 }
                 .proj-num {
-                    font-family: 'Courier New', monospace;
+                    font-family: 'JetBrains Mono', 'Courier New', monospace;
                     font-size: 0.75rem; color: var(--text-mute);
                     font-weight: 700;
                 }
@@ -120,11 +275,33 @@ const Projects = () => {
                     background: var(--bg); border: 1px solid var(--border);
                     display: flex; align-items: center; justify-content: center;
                     color: var(--accent);
+                    overflow: hidden;
+                }
+                .proj-logo-img {
+                    width: 28px;
+                    height: 28px;
+                    object-fit: contain;
+                }
+                .proj-meta-row {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                    flex-wrap: wrap;
+                    margin-bottom: 0.35rem;
                 }
                 .proj-cat {
                     font-size: 0.65rem; font-weight: 700;
                     color: var(--accent); letter-spacing: 0.12em;
-                    text-transform: uppercase; margin-bottom: 0.4rem; display: block;
+                    text-transform: uppercase; display: inline-block;
+                }
+                .proj-role-tag {
+                    font-size: 0.62rem;
+                    font-weight: 500;
+                    color: var(--text-mute);
+                    background: var(--bg);
+                    border: 1px solid var(--border);
+                    border-radius: var(--r-sm);
+                    padding: 0.1rem 0.45rem;
                 }
                 .proj-name-row {
                     display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
@@ -188,24 +365,24 @@ const Projects = () => {
                 .proj-privacy-link {
                     display: inline-flex;
                     align-items: center;
-                    gap: 0.3rem;
-                    font-size: 0.65rem;
+                    gap: 0.35rem;
+                    font-size: 0.68rem;
                     font-weight: 600;
-                    color: var(--text-mute);
-                    text-decoration: none;
+                    color: var(--accent);
                     background: transparent;
                     border: 1px solid var(--border);
-                    padding: 0.18rem 0.5rem;
+                    padding: 0.22rem 0.6rem;
                     border-radius: var(--r-sm);
-                    margin-bottom: 0.6rem;
-                    transition: color 0.2s, border-color 0.2s;
+                    margin-bottom: 0.75rem;
+                    transition: all 0.2s;
                     width: fit-content;
                     cursor: pointer;
                     font-family: inherit;
                     line-height: inherit;
                 }
                 .proj-privacy-link:hover {
-                    color: var(--accent);
+                    color: var(--bg);
+                    background: var(--accent);
                     border-color: var(--accent);
                 }
                 @media (max-width: 768px) {
@@ -213,6 +390,8 @@ const Projects = () => {
                     .proj-item { grid-template-columns: 1fr; gap: 1rem; align-items: start; }
                     .proj-left { flex-direction: row; justify-content: flex-start; }
                     .proj-right { flex-direction: row; justify-content: flex-end; }
+                    .subsection-block--ext { margin-top: 3rem; padding-top: 2.5rem; }
+                    .work-nav-pills { margin: 1rem 0 2rem 0; }
                 }
             `}</style>
         </section>
