@@ -1,76 +1,57 @@
-import {
-    Zap,
-    BarChart3,
-    Database,
-    Brain,
-    Trophy,
-    TrendingUp,
-    PieChart,
-    Settings,
-    Users,
-    Terminal,
-    Shirt,
-    Layers,
-    Search,
-    Sparkles,
-    Package,
-    Video,
-    Cat,
-    LucideIcon
-} from 'lucide-react';
-
 export interface PersonalInfo {
     name: string;
-    roles: string[];
+    shortName: string;
+    role: string;
     email: string;
     github: string;
     linkedin: string;
-    resumeUrl: string;
     resumePrimaryLabel: string;
     resumePrimaryUrl: string;
     resumeSecondaryLabel: string;
     resumeSecondaryUrl: string;
-    twitter: string;
     status: string;
-    tagline: string;
-    subTagline: string;
-    bio: string;
+    intro: string;
+    bio: string[];
 }
 
-export interface Stat {
-    icon: LucideIcon;
-    value: string;
+export interface Fact {
     label: string;
-    color: string;
+    value: string;
 }
 
 export interface SkillCategory {
     title: string;
-    icon: LucideIcon;
     skills: string[];
 }
 
 export interface Experience {
+    id: string;
     type: string;
     title: string;
     company: string;
     period: string;
-    description: string;
+    points: string[];
     tags: string[];
+    featured?: boolean;
 }
 
 export interface Project {
     title: string;
     category: string;
-    description: string;
+    summary: string;
+    /** Ordered stages of the system, drawn as a hand sketch */
+    pipeline: string[];
+    /** Optional: stage index the last stage loops back to, drawn as a feedback arrow */
+    loopTo?: number;
+    /** Short handwritten margin note */
+    note: string;
     tags: string[];
     githubUrl: string;
-    icon: LucideIcon;
     /** Optional: short status badge, e.g. "Shipped v1" */
     status?: string;
-    /** Optional: store / live URL (shown instead of GitHub icon when present) */
+    /** Optional: store / live URL (shown instead of GitHub when present) */
     storeUrl?: string;
-    /** Optional: 2–4 short impact / highlights bullets */
+    /** Optional: 2 to 4 short highlights */
     highlights?: string[];
     /** Optional: link to a privacy policy or legal page */
     privacyUrl?: string;
@@ -78,219 +59,176 @@ export interface Project {
     logoImg?: string;
     /** Optional: creator role summary */
     role?: string;
+    /** Optional: several repos under one entry */
+    repos?: { label: string; url: string }[];
+    /** Optional: screenshots, taped into the entry */
+    shots?: { src: string; alt: string }[];
 }
 
 export interface PortfolioData {
     personalInfo: PersonalInfo;
-    stats: Stat[];
-    heroHUD: {
-        processingPower: string;
-        neuralLatency: string;
-        dataVolume: string;
-    };
-    skills: {
-        categories: SkillCategory[];
-        marquee: string[];
-    };
+    facts: Fact[];
+    skills: SkillCategory[];
     experience: Experience[];
     aiProjects: Project[];
     extensionProjects: Project[];
-    projects: Project[];
 }
+
+const env = (import.meta as any).env;
 
 export const portfolioData: PortfolioData = {
     personalInfo: {
-        name: (import.meta as any).env.VITE_USER_NAME || "M. Wajeeh",
-        roles: ["ML Engineer", "AI Engineer"],
-        email: (import.meta as any).env.VITE_USER_EMAIL || "contact@example.com",
-        github: (import.meta as any).env.VITE_USER_GITHUB || "https://github.com/",
-        linkedin: (import.meta as any).env.VITE_USER_LINKEDIN || "https://linkedin.com/in/",
-        // Backward-compatible single resume URL (defaults to the primary resume)
-        resumeUrl: (import.meta as any).env.VITE_USER_RESUME_URL || (import.meta as any).env.VITE_USER_RESUME_PRIMARY_URL || "/AI_Engineer_Wajeeh.pdf",
-        resumePrimaryLabel: (import.meta as any).env.VITE_USER_RESUME_PRIMARY_LABEL || "AI / ML",
-        resumePrimaryUrl: (import.meta as any).env.VITE_USER_RESUME_PRIMARY_URL || "/AI_Engineer_Wajeeh.pdf",
-        resumeSecondaryLabel: (import.meta as any).env.VITE_USER_RESUME_SECONDARY_LABEL || "Data Analytics",
-        resumeSecondaryUrl: (import.meta as any).env.VITE_USER_RESUME_SECONDARY_URL || "/DataAnalytics-Wajeeh.pdf",
-        twitter: "",
-        status: "ACCEPTING PROJECTS",
-        tagline: "Engineering intelligent systems that solve real-world problems",
-        subTagline: "AI Graduate with hands-on experience in ML Engineering and Generative AI.",
-        bio: "I'm an AI graduate who builds machine learning systems that actually make it to production. I work across ML engineering and generative AI, from end-to-end ML pipelines with Docker to LLM-powered applications using LangChain and RAG. I care about building systems that aren't just smart, but reliable and ready for the real world."
+        name: env.VITE_USER_NAME || "M. Wajeeh",
+        shortName: "M. Wajeeh",
+        role: "AI Engineer",
+        email: env.VITE_USER_EMAIL || "contact@example.com",
+        github: env.VITE_USER_GITHUB || "https://github.com/",
+        linkedin: env.VITE_USER_LINKEDIN || "https://linkedin.com/in/",
+        resumePrimaryLabel: env.VITE_USER_RESUME_PRIMARY_LABEL || "AI / ML",
+        resumePrimaryUrl: env.VITE_USER_RESUME_PRIMARY_URL || "/AI_Engineer_Wajeeh.pdf",
+        resumeSecondaryLabel: env.VITE_USER_RESUME_SECONDARY_LABEL || "Data Analytics",
+        resumeSecondaryUrl: env.VITE_USER_RESUME_SECONDARY_URL || "/DataAnalytics-Wajeeh.pdf",
+        status: "Open to AI / ML roles",
+        intro: "AI graduate working across ML engineering and generative AI: reproducible pipelines with Docker and CI/CD, and LLM applications built on LangChain, LangGraph and RAG.",
+        bio: [
+            "I'm an AI graduate who builds machine learning systems that actually make it to production.",
+            "My work spans two sides of the field. On one side, end-to-end ML pipelines: ingestion, validation, training, tracking and deployment with Docker, DVC, MLflow and GitHub Actions. On the other, LLM applications: multi-agent systems, retrieval pipelines and speech-to-text tooling.",
+            "I care about systems that aren't just smart, but reliable and ready for the real world."
+        ]
     },
 
-    stats: [
-        { icon: Trophy, value: '#1', label: 'VYROTHON 2026', color: 'var(--color-accent-cyan)' },
-        { icon: Zap, value: '580+', label: 'COMPETITORS OUTPERFORMED', color: 'var(--color-primary)' },
-        { icon: TrendingUp, value: '7+', label: 'END-TO-END ML PIPELINES', color: 'var(--color-accent-magenta)' }
+    facts: [
+        { label: "Now", value: "AI Intern, CESAI, CEME NUST" },
+        { label: "Record", value: "1st of 580+, Vyrothon 2026" },
+        { label: "Degree", value: "BS Artificial Intelligence, NUML, 2026" },
+        { label: "Focus", value: "MLOps, LLM agents, RAG" }
     ],
 
-    heroHUD: {
-        processingPower: "94.7%",
-        neuralLatency: "0.002ms",
-        dataVolume: "1.2 TB/S"
-    },
-
-    skills: {
-        categories: [
-            {
-                title: 'DATA ANALYSIS',
-                icon: BarChart3,
-                skills: ['Data Cleaning', 'Preprocessing', 'EDA', 'Trend Analysis', 'Reporting', 'Feature Engineering', 'Statistical Analysis']
-            },
-            {
-                title: 'DATA VISUALIZATION',
-                icon: PieChart,
-                skills: ['Power BI', 'Tableau', 'Matplotlib', 'Seaborn']
-            },
-            {
-                title: 'MACHINE LEARNING & AI',
-                icon: Brain,
-                skills: ['Machine Learning', 'Deep Learning', 'CNN/RNN/LSTM', 'NLP', 'Scikit-learn', 'TensorFlow', 'PyTorch']
-            },
-            {
-                title: 'GENERATIVE AI',
-                icon: Sparkles,
-                skills: ['Large Language Models (LLMs)', 'RAG Pipelines', 'LangChain', 'LangGraph', 'Prompt Engineering', 'Vector Databases']
-            },
-            {
-                title: 'MLOPS & DEPLOYMENT',
-                icon: Settings,
-                skills: ['ML Pipelines', 'Model Versioning', 'CI/CD for ML', 'Docker', 'DVC', 'MLflow', 'GitHub Actions']
-            },
-            {
-                title: 'PROGRAMMING & TOOLS',
-                icon: Terminal,
-                skills: ['Python', 'SQL', 'Git & GitHub', 'Clean Code', 'Pandas', 'NumPy']
-            },
-            {
-                title: 'DATABASES',
-                icon: Database,
-                skills: ['MongoDB', 'Microsoft SQL Server (SSMS) – T-SQL', 'Data Ingestion', 'ETL Pipelines', 'Schema Design']
-            },
-            {
-                title: 'PROFESSIONAL SKILLS',
-                icon: Users,
-                skills: ['Problem Solving', 'Technical Communication', 'Stakeholder Collaboration', 'Teamwork', 'Project Management']
-            }
-        ],
-        marquee: ['Python', 'SQL', 'TensorFlow', 'PyTorch', 'LangChain', 'LLMs', 'RAG', 'LangGraph', 'Docker', 'Power BI', 'Tableau', 'Pandas', 'NumPy', 'Scikit-learn', 'Git', 'MLflow', 'DVC']
-    },
+    skills: [
+        { title: 'Generative AI', skills: ['LLMs', 'RAG pipelines', 'LangChain', 'LangGraph', 'Prompt engineering', 'Vector databases'] },
+        { title: 'Machine learning', skills: ['Deep learning', 'CNN / RNN / LSTM', 'NLP', 'Scikit-learn', 'TensorFlow', 'PyTorch'] },
+        { title: 'MLOps', skills: ['ML pipelines', 'Model versioning', 'CI/CD for ML', 'Docker', 'DVC', 'MLflow', 'GitHub Actions'] },
+        { title: 'Data analysis', skills: ['Cleaning & preprocessing', 'EDA', 'Feature engineering', 'Statistical analysis', 'Reporting'] },
+        { title: 'Visualization', skills: ['Power BI', 'Tableau', 'Matplotlib', 'Seaborn'] },
+        { title: 'Languages & tools', skills: ['Python', 'SQL', 'Pandas', 'NumPy', 'Git & GitHub'] },
+        { title: 'Databases', skills: ['MongoDB', 'SQL Server (T-SQL)', 'ETL pipelines', 'Schema design'] },
+    ],
 
     experience: [
         {
+            id: 'cesai',
             type: 'Internship',
             title: 'AI Intern',
-            company: 'CESAI (Center of Excellence for Simulators and AI) - CEME NUST, Rawalpindi',
-            period: 'July 2026 - Present',
-            description: `• Working on AI development and intelligent system simulation at CESAI.
-                            • Applied machine learning algorithms and computer vision techniques for simulation frameworks.`,
-            tags: ['Artificial Intelligence', 'Simulators', 'Machine Learning', 'Computer Vision']
+            company: 'CESAI (Center of Excellence for Simulators and AI), CEME NUST, Rawalpindi',
+            period: 'Jul 2026 to now',
+            points: [
+                'AI development and intelligent system simulation.',
+                'Applying machine learning and computer vision techniques to simulation frameworks.'
+            ],
+            tags: ['Machine Learning', 'Computer Vision', 'Simulators']
         },
         {
-            type: 'Speaking',
-            title: 'Guest Speaker - Vyrothon Journey & AI Development',
-            company: 'GDG On Campus - COMSATS Abbottabad',
+            id: 'vyrothon',
+            type: 'Win',
+            title: '1st place, Vyrothon 2026',
+            company: 'NUST × Vyro AI',
             period: '2026',
-            description: `• Invited to speak about the journey of winning Vyrothon 2026 and building AI solutions under pressure.
-                            • Shared technical insights on voice-agent development and effective team collaboration.
-                            • Focused on bridging the gap between hackathon concepts and real-world AI applications.`,
-            tags: ['Public Speaking', 'AI Development', 'Community Engagement', 'Career Journey']
+            points: [
+                'Won a multi-stage national hackathon against 580+ applicants.',
+                'Built an AI voice agent for real estate that qualifies leads and books appointments in real time.',
+                'Owned the core language understanding and response logic, bringing business response time to zero.'
+            ],
+            tags: ['Voice Agent', 'LLMs', 'Real-time'],
+            featured: true
         },
         {
-            type: 'Achievement',
-            title: '1st Place Winner - Vyrothon 2026',
-            company: 'NUST | Vyro AI',
+            id: 'gdg-talk',
+            type: 'Talk',
+            title: 'Guest speaker: the Vyrothon build',
+            company: 'GDG On Campus, COMSATS Abbottabad',
             period: '2026',
-            description: `• Secured 1st position among 580+ applicants in an intensive multi-stage national hackathon.
-                            • Built an AI voice agent for real-estate that qualifies leads and books appointments in real-time.
-                            • Developed the core AI understanding and response logic, reducing business response time to zero.`,
-            tags: ['AI Voice Agent', 'LLMs', 'Hackathon', 'Real Estate AI', 'Teamwork']
+            points: [
+                'Spoke on building AI under hackathon pressure, voice-agent development and team collaboration.',
+                'Focused on turning hackathon prototypes into real-world AI applications.'
+            ],
+            tags: ['Public Speaking', 'Community']
         },
         {
-            type: 'EDU',
+            id: 'degree',
+            type: 'Education',
             title: 'BS Artificial Intelligence',
-            company: 'National University of Modern Languages,Islamabad ',
-            period: '2022 - 2026',
-            description: 'Bachelor’s in Artificial Intelligence with a strong focus on machine learning and applied AI systems.',
-            tags: ['Artificial Intelligence', 'Machine Learning', 'Applied AI']
+            company: 'National University of Modern Languages, Islamabad',
+            period: '2022 to 2026',
+            points: ['Focus on machine learning and applied AI systems.'],
+            tags: ['Machine Learning', 'Applied AI']
         }
     ],
 
     aiProjects: [
         {
-            title: "Diffusion-Based Virtual Try-On Pipeline (Final Year Project)",
-            category: "Deep Learning Project",
-            description: "Built an end-to-end AI pipeline for virtual garment fitting using diffusion models, agnostic human parsing, tensor preprocessing, and chatbot-assisted interaction. Designed backend integration with Firebase for authentication and data handling.",
-            tags: ["Diffusers", "PyTorch", "Image Processing", "Human Parsing", "MLOps", "Firebase"],
-            githubUrl: "https://github.com/M-Wajeeh/Final-Year-Project",
-            icon: Shirt
-        },
-        {
-            title: 'Vehicle Insurance MLOps Pipeline',
-            category: 'MLOps / Machine Learning Deployment',
-            description: 'A production-grade end-to-end MLOps pipeline that demonstrates how machine learning systems are designed, deployed, and maintained in real-world environments. The project covers the full lifecycle, from cloud-based data ingestion and validation to automated model deployment using Docker and CI/CD workflows. Emphasizes modular architecture, reproducibility, and production-ready ML engineering practices.',
-            tags: ['MLOps', 'Machine Learning Deployment', 'Docker', 'CI/CD', 'Data Ingestion', 'Data Validation', 'Model Deployment', 'Modular Architecture', 'Reproducibility', 'Production-Ready ML Engineering Practices'],
-            githubUrl: "https://github.com/M-Wajeeh/mlops-vehicle-insurance-pipeline",
-            icon: Layers
-        },
-        {
-            title: 'end-to-end-purchase-prediction-ml',
-            category: 'Machine Learning / MLOps',
-            description: 'Production-style ML pipeline for online purchase prediction with modular components (ingestion → transformation → training), XGBoost modeling, config-driven architecture, structured logging, and DVC-based reproducibility.',
-            tags: [
-                'Machine Learning',
-                'MLOps',
-                'XGBoost',
-                'DVC',
-                'Data Pipeline',
-                'Model Training',
-                'Reproducible ML'
-            ],
-            githubUrl: "https://github.com/M-Wajeeh/end-to-end-purchase-prediction-ml",
-            icon: Brain
-        },
-        {
-            title: 'end-to-end-telco-churn-ml',
-            category: 'Machine Learning / Machine Learning Operations',
-            description: 'End-to-end MLOps project for predicting telecom customer churn using Docker, GitHub Actions, with MLflow tracking and a web UI for real-time inference.',
-            tags: ['Machine Learning', 'Machine Learning Operations', 'Docker', 'GitHub Actions', 'MLflow', 'Web UI', 'Real-time Inference'],
-            githubUrl: "https://github.com/M-Wajeeh/end-to-end-telco-churn-ml",
-            icon: Layers
-        },
-        {
-            title: 'ResearchMind — Multi-Agent AI Research System',
-            category: 'GenAI / Multi-Agent AI Systems',
-            description: 'A fully autonomous multi-agent AI pipeline built with LangChain, LangGraph, and Streamlit. Given a topic, 6 specialized AI agents (Search, Reader, Writer, Critic, Verification, Revision) collaborate to search the web, scrape sources, draft, score, fact-check, and produce a polished research report with live pipeline UI tracking.',
-            tags: ['GenAI', 'Multi-Agent Systems', 'LangChain', 'LangGraph', 'Streamlit', 'OpenAI', 'Tavily', 'Python'],
+            title: 'ResearchMind',
+            note: '6 agents, every claim fact-checked',
+            loopTo: 2,
+            category: 'Multi-agent system',
+            summary: 'Give it a topic; six agents search the web, read sources, draft, critique, fact-check and revise into a finished research report.',
+            pipeline: ['Search', 'Read', 'Write', 'Critique', 'Verify', 'Revise'],
+            tags: ['LangGraph', 'LangChain', 'OpenAI', 'Tavily', 'Streamlit', 'Python'],
             githubUrl: 'https://github.com/M-Wajeeh/ResearchMind',
-            icon: Sparkles,
             highlights: [
-                'Autonomous 6-agent pipeline: search → scrape → write → critique → verify → revise',
-                'Smart web scraping with bot-detection bypass, noise filtering, and sentence boundary truncation',
-                'Fact-checking verification chain that cross-references claims against raw scraped evidence',
-                'Live Streamlit UI with real-time step status animation and one-click Markdown export'
+                'Verification chain cross-checks every claim against the raw scraped evidence.',
+                'Scraper handles bot detection, filters noise and truncates on sentence boundaries.',
+                'Live Streamlit UI tracks each agent step; reports export to Markdown in one click.'
             ]
         },
         {
-            title: 'RAG Insight Engine',
-            category: 'GenAI / Retrieval-Augmented Generation',
-            description: 'Modular RAG system for grounded document Q&A. Features pluggable loaders, recursive chunking, HuggingFace embeddings, a persistent Chroma vector store, and a citation-aware Groq LLM generator. Includes a Streamlit UI and an evaluation harness for measuring retrieval accuracy.',
-            tags: ['GenAI', 'RAG', 'LangChain', 'ChromaDB', 'HuggingFace', 'Groq', 'Streamlit', 'Python', 'Evaluation Harness'],
-            githubUrl: "https://github.com/M-Wajeeh/RAG-Insight-Engine",
-            icon: Search
+            title: 'Video Agent',
+            note: 'handles Urdu + Hinglish too',
+            category: 'Multilingual video intelligence',
+            summary: 'Turns a YouTube link or meeting recording into a transcript, summary, action items and a chat assistant that answers from the video.',
+            pipeline: ['YouTube / file', 'FFmpeg 16 kHz', 'Whisper STT', 'Map-reduce summary', 'RAG chat'],
+            tags: ['LangChain LCEL', 'OpenAI Whisper', 'GPT-4o-mini', 'ChromaDB', 'FFmpeg', 'yt-dlp'],
+            githubUrl: 'https://github.com/M-Wajeeh/meetingmind',
+            highlights: [
+                'Transcribes English, Urdu (with a Perso-Arabic script guard) and Hinglish.',
+                'Routes speech-to-text across Whisper API, ElevenLabs Scribe, Sarvam AI and local Whisper.',
+                'Extracts action items, key decisions and open questions; vector store resets per video to stop context bleed.'
+            ]
         },
         {
-            title: 'Video Agent - AI Video & Meeting Assistant',
-            category: 'GenAI / Multilingual Video Intelligence & RAG',
-            description: 'An intelligent, end-to-end AI video and meeting intelligence system built with Python, LangChain, OpenAI Whisper & GPT-4o-mini, and ChromaDB. Ingests YouTube URLs or local media, normalizes audio to 16kHz mono WAV via FFmpeg, transcribes multilingual speech (English, Urdu with Perso-Arabic prompt guard, Hinglish), generates Map-Reduce summaries & action items, and powers an interactive conversational RAG assistant.',
-            tags: ['GenAI', 'RAG', 'LangChain LCEL', 'OpenAI Whisper', 'ChromaDB', 'FFmpeg', 'yt-dlp', 'Python'],
-            githubUrl: 'https://github.com/M-Wajeeh/meetingmind',
-            icon: Video,
+            title: 'Virtual Try-On',
+            note: 'final year project',
+            category: 'Diffusion pipeline · Final year project',
+            summary: 'End-to-end virtual garment fitting with diffusion models, agnostic human parsing and a chatbot-assisted flow, backed by Firebase.',
+            pipeline: ['Person + garment', 'Human parsing', 'Agnostic mask', 'Tensor prep', 'Diffusion', 'Try-on result'],
+            tags: ['Diffusers', 'PyTorch', 'Image Processing', 'Firebase'],
+            githubUrl: 'https://github.com/M-Wajeeh/Final-Year-Project'
+        },
+        {
+            title: 'RAG Insight Engine',
+            note: 'answers come with citations',
+            category: 'Retrieval-augmented generation',
+            summary: 'Grounded document Q&A with citations, plus an evaluation harness that measures retrieval accuracy.',
+            pipeline: ['Load', 'Chunk', 'Embed', 'Chroma store', 'Retrieve', 'Cited answer'],
+            tags: ['LangChain', 'ChromaDB', 'HuggingFace', 'Groq', 'Streamlit'],
+            githubUrl: 'https://github.com/M-Wajeeh/RAG-Insight-Engine'
+        },
+        {
+            title: 'Production ML pipelines ×3',
+            note: 'same discipline, three domains',
+            category: 'MLOps · Vehicle insurance, telco churn, purchase prediction',
+            summary: 'Three end-to-end pipelines built the way production models are: modular stages, tracked experiments, reproducible runs and automated deployment.',
+            pipeline: ['Ingest', 'Validate', 'Transform', 'Train', 'Track', 'Deploy'],
+            tags: ['Docker', 'GitHub Actions', 'CI/CD', 'MLflow', 'DVC', 'XGBoost', 'Data Validation'],
+            githubUrl: '',
             highlights: [
-                'Flexible ingestion: YouTube download with anti-bot bypass (yt-dlp) + 16kHz mono WAV chunking via FFmpeg',
-                'Multilingual STT engine routing: OpenAI Whisper API (Perso-Arabic script guard for Urdu), ElevenLabs Scribe v2, Sarvam AI & local Whisper',
-                'Automated Map-Reduce summarization (gpt-4o-mini) & structured extraction of Action Items, Key Decisions, and Open Questions',
-                'Interactive LCEL Conversational RAG with auto-resetting ChromaDB vector store to eliminate cross-video context contamination'
+                'Vehicle insurance: cloud ingestion and validation through to automated deployment with Docker and CI/CD.',
+                'Telco churn: MLflow experiment tracking and a web UI for real-time inference.',
+                'Purchase prediction: config-driven XGBoost pipeline with structured logging and DVC-reproducible runs.'
+            ],
+            repos: [
+                { label: 'vehicle insurance', url: 'https://github.com/M-Wajeeh/mlops-vehicle-insurance-pipeline' },
+                { label: 'telco churn', url: 'https://github.com/M-Wajeeh/end-to-end-telco-churn-ml' },
+                { label: 'purchase prediction', url: 'https://github.com/M-Wajeeh/end-to-end-purchase-prediction-ml' }
             ]
         }
     ],
@@ -298,43 +236,41 @@ export const portfolioData: PortfolioData = {
     extensionProjects: [
         {
             title: 'Swatcat',
-            category: 'Chrome Extension (MV3) / Digital Wellbeing',
-            description: 'A cute, open-source companion that keeps your social media time in check. Features a gentle 5-second pause before opening feeds, a shared daily limit, escalating cat reactions (staring, lying across the page, batting), and a swift swat that closes the tab when time expires. 100% private with zero network requests.',
-            tags: ['Vanilla JavaScript', 'HTML & CSS', 'Chrome Extension MV3', 'declarativeNetRequest', 'Shadow DOM', 'E2E Testing', 'MIT License'],
+            note: 'yes, the cat closes your tab',
+            category: 'Chrome extension · Digital wellbeing',
+            summary: 'A cat that guards your social media time. It makes you pause, warns you, and swats the tab closed when your daily limit runs out. Zero network requests.',
+            pipeline: ['Open a feed', '5-second pause', 'Shared daily limit', 'Cat warns', 'Swat closes tab'],
+            tags: ['JavaScript', 'Manifest V3', 'declarativeNetRequest', 'Shadow DOM', 'E2E tests', 'MIT'],
             githubUrl: '',
-            status: 'Submitted for Review',
+            status: 'In review',
             privacyUrl: '/swatcat/privacy.html',
             logoImg: '/swatcat/icon-128.png',
-            role: 'Solo project: product idea, design and development',
-            highlights: [
-                'Animated SVG cat rendered inside a closed Shadow DOM so it never interferes with host pages',
-                'One shared daily limit across social sites using declarativeNetRequest blocking (no browsing traffic inspected)',
-                'Escalating cat behavior: mindful pause, typing detection, 1-min warnings, and playful swat-to-close',
-                'Private by design: zero network requests, no analytics, no accounts — all data stays on device'
+            shots: [
+                { src: '/swatcat/shots/pause.webp', alt: 'Swatcat asking "Still want to go in?" with a five-second countdown before a social site opens' },
+                { src: '/swatcat/shots/swat.webp', alt: `Swatcat's "Time's up for today" screen after the daily limit closes the tab` }
             ],
-            icon: Cat
+            role: 'Solo: idea, design, development',
+            highlights: [
+                'Animated SVG cat lives in a closed Shadow DOM, so it never breaks host pages.',
+                'One limit shared across sites via declarativeNetRequest; no browsing traffic is inspected.'
+            ]
         },
         {
             title: 'TabChest',
-            category: 'Browser Extension / Indie Product',
-            description: 'A local-first browser extension to save, organize, and restore tab workspaces. Supports cross-window capture, pinned-tab restore, workspace rename/delete with undo, JSON export/import, Light/Dark/System themes, and a Pro licensing flow with launch-offer support.',
-            tags: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'IndexedDB', 'Chrome Extension MV3'],
+            note: 'shipped v1',
+            category: 'Browser extension · Indie product',
+            summary: 'Save, organize and restore tab workspaces. Local-first, with JSON export/import and a Pro licensing flow.',
+            pipeline: ['Select tabs', 'Save workspace', 'IndexedDB', 'Restore / export'],
+            tags: ['TypeScript', 'React', 'Vite', 'Tailwind', 'IndexedDB', 'Manifest V3'],
             githubUrl: '',
             status: 'Shipped v1',
+            storeUrl: 'https://chromewebstore.google.com/detail/tabchest/hgggkkijegbpooajfcopaclabingkfgk',
             privacyUrl: '/tabchest/privacy.html',
-            role: 'Solo project: product architecture, development & licensing flow',
+            role: 'Solo: architecture, development, licensing',
             highlights: [
-                'Save named workspaces from any tab selection — not just whole windows',
-                'Export to JSON and re-import with merge behavior (same-name updates, new names added)',
-                'Local-first storage — no tab data sent to any server',
-                'Pro licensing with buy / activate / deactivate and launch-offer support'
-            ],
-            icon: Package
+                'Saves any selection of tabs, across windows, including pinned tabs.',
+                'Import merges by name; rename and delete come with undo.'
+            ]
         }
     ],
-
-    // Backward compatibility: combined list of all projects
-    get projects() {
-        return [...this.aiProjects, ...this.extensionProjects];
-    }
 };

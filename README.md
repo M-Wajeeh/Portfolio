@@ -8,12 +8,12 @@ A bold, editorial-style portfolio built with React, TypeScript, and Vite. Showca
 
 ## Features
 
-- **Editorial Design** - Bold typography, numbered sections, and warm gold accents
-- **Dark/Light Mode** - Seamless theme switching with curated color palettes
-- **Fully Responsive** - Optimized for all devices and screen sizes
+- **Notebook Design** - Graph paper, handwritten notes, a taped-in photo and pen marks
+- **Hand-drawn System Sketches** - Each project's pipeline drawn stroke by stroke as you scroll
+- **Fully Responsive** - Index tabs on wide screens, a compact strip on phones
+- **Accessible** - Printed text for skimming, labelled sketches, reduced-motion support
 - **TypeScript** - Type-safe codebase for better maintainability
-- **Framer Motion** - Smooth scroll-triggered and entrance animations
-- **SEO Optimized** - Proper meta tags, keywords, and semantic HTML
+- **SEO and Sharing** - Meta tags plus a 1200×630 link-preview image
 - **Fast Performance** - Built with Vite for instant HMR and optimized builds
 
 ---
@@ -23,8 +23,7 @@ A bold, editorial-style portfolio built with React, TypeScript, and Vite. Showca
 - **Framework**: React 18 + TypeScript
 - **Build Tool**: Vite
 - **Styling**: Vanilla CSS with CSS Variables
-- **Icons**: Lucide React
-- **Animations**: Framer Motion
+- **Sketches**: Rough.js and Rough Notation
 
 ---
 
@@ -130,6 +129,5 @@ Data Analyst | ML Engineer | AI Engineer
 
 ## Acknowledgments
 
-- Icons by [Lucide](https://lucide.dev/)
-- Animations by [Framer Motion](https://www.framer.com/motion/)
+- Hand-drawn sketches by [Rough.js](https://roughjs.com/) and [Rough Notation](https://roughnotation.com/)
 - Built with [Vite](https://vitejs.dev/)

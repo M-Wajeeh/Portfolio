@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- sticky note -->
+  <path d="M5 4.5 L59.5 3.5 L60 58 L4 59.5 Z" fill="#f4df7a"/>
+  <path d="M48 59 L60 58.2 L59.6 47 Z" fill="#e2c95c"/>
+  <!-- MW in blue ballpoint -->
+  <g fill="none" stroke="#2347a8" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9.5 43.5 C10.5 35 11.5 26 13 18.5 C15.5 25 18 30.5 20.5 36 C23 29 25.5 23 28 17.5 C28.8 26 29.4 35 30 43"/>
+    <path d="M34 19 C35.2 27 36.3 35.5 37.8 43.5 C39.6 37.5 41.4 32 43.2 27 C45 33 46.8 38.5 48.6 43.5 C50.6 35 52.6 26.5 55 17.5"/>
+  </g>
+  <!-- red pen underline -->
+  <path d="M9 51.5 C21 48.8 37 48.6 56 50.6" fill="none" stroke="#c7352b" stroke-width="3.4" stroke-linecap="round"/>
+</svg>
