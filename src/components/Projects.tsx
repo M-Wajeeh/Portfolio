@@ -38,6 +38,9 @@ const Entry = ({ p, n }: { p: Project; n: number }) => {
                 {p.role && <p className="tools"><span className="hand">role:</span> {p.role}</p>}
 
                 <p className="entry-links">
+                    {p.page && (
+                        <a href={`/extensions/${p.page.slug}/`} className="pen-link hand">read the full entry →</a>
+                    )}
                     {href && (
                         <a href={href} target="_blank" rel="noopener noreferrer" className="pen-link hand">
                             {p.storeUrl ? 'see it in the store →' : 'read the code →'}
@@ -79,6 +82,9 @@ const Projects = () => {
             <h3 className="subsection hand">
                 <Mark type="box" padding={6}>Side quests: browser extensions</Mark>
             </h3>
+            <p className="entry-links">
+                <a href="/extensions/" className="pen-link hand">all the extensions on one page →</a>
+            </p>
             {extensionProjects.map((p, i) => <Entry key={p.title} p={p} n={aiProjects.length + i + 1} />)}
         </section>
     );
