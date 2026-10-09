@@ -393,6 +393,30 @@ ul, ol { list-style: none; }
   .perms div { grid-template-columns: 1fr; gap: 0.1rem; }
 }
 
+/* ---------- Privacy policies ---------- */
+.policy { max-width: 46rem; padding: clamp(2.5rem, 7vh, 5rem) 0 2.5rem; }
+.policy > p, .policy > ul { margin-top: 0.9rem; color: var(--ink-2); }
+.policy strong { color: var(--ink); font-weight: 600; }
+.policy .xp-title { flex-wrap: nowrap; font-size: clamp(2.3rem, 5vw, 3.6rem); }
+.policy .xp-logo { flex: none; }
+.policy-meta { color: var(--ink-3); font-size: 0.95rem; }
+.policy-h { margin-top: 3rem; font-weight: 700; color: var(--ink); font-size: clamp(1.5rem, 2.8vw, 1.9rem); }
+.policy ul { display: grid; gap: 0.5rem; }
+.policy ul li { position: relative; padding-left: 1.5rem; }
+.policy ul li::before { content: '–'; position: absolute; left: 0.2rem; font-family: var(--hand); color: var(--blue-pen); }
+.policy code { font-size: 0.9em; padding: 0 0.25em; background: oklch(0.93 0.02 90); border-radius: 3px; overflow-wrap: anywhere; }
+.policy > .policy-note {
+  margin-top: 1.25rem; padding: 0.9rem 1.2rem;
+  color: var(--ink); background: var(--card);
+  border: 1.5px solid var(--red-pen); border-radius: 0.9rem 0.4rem 1rem 0.5rem;
+  transform: rotate(-0.4deg);
+}
+.policy .perms { margin-top: 1.5rem; }
+.policy-mail { font-weight: 600; font-size: clamp(1.2rem, 3vw, 1.6rem); overflow-wrap: anywhere; }
+.policy-mail a { text-decoration: underline; text-decoration-color: var(--highlighter); text-decoration-thickness: 0.4em; text-underline-offset: -0.2em; text-decoration-skip-ink: none; }
+.policy-mail a:hover { color: var(--red-pen); }
+.policy .colophon a:hover { color: var(--red-pen); }
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

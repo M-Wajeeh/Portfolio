@@ -13,6 +13,10 @@ export default defineConfig({
                 extensions: resolve(__dirname, 'extensions/index.html'),
                 swatcat: resolve(__dirname, 'extensions/swatcat/index.html'),
                 tabchest: resolve(__dirname, 'extensions/tabchest/index.html'),
+                // Privacy policies keep the URLs the store listings point to
+                swatcatPrivacy: resolve(__dirname, 'swatcat/privacy.html'),
+                tabchestPrivacy: resolve(__dirname, 'tabchest/privacy.html'),
+                smartReaderPrivacy: resolve(__dirname, 'smart-reader/privacy.html'),
             },
         },
     },
