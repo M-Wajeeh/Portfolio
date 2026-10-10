@@ -289,6 +289,10 @@ export const portfolioData: PortfolioData = {
             // storeUrl: 'https://chromewebstore.google.com/detail/...', // Add "see it in the store →" URL here once approved
             privacyUrl: '/smart-reader/privacy.html',
             role: 'Solo: idea, design, development, licensing',
+            shots: [
+                { src: '/smart-reader/shots/before-after.webp', alt: 'A cluttered news page before, and the same article after in Smart Reader with a TL;DR and key points' },
+                { src: '/smart-reader/shots/library.webp', alt: 'Smart Reader library listing saved articles with their highlights, search and Markdown export' }
+            ],
             highlights: [
                 "Summarizes with Chrome's built-in Gemini Nano, falling back to an extractive sentence ranker that skips headings, captions and footnotes.",
                 'Reader lives in a closed Shadow DOM; highlights re-anchor by text and position when you return to an article.'
