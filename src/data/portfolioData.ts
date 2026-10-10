@@ -121,7 +121,7 @@ export const portfolioData: PortfolioData = {
     },
 
     facts: [
-        { label: "Now", value: "AI Intern, CESAI, CEME NUST" },
+        { label: "Interned", value: "AI Intern, CESAI, CEME NUST, 2026" },
         { label: "Record", value: "1st of 580+, Vyrothon 2026" },
         { label: "Degree", value: "BS Artificial Intelligence, NUML, 2026" },
         { label: "Focus", value: "MLOps, LLM agents, RAG" }
@@ -143,10 +143,10 @@ export const portfolioData: PortfolioData = {
             type: 'Internship',
             title: 'AI Intern',
             company: 'CESAI (Center of Excellence for Simulators and AI), CEME NUST, Rawalpindi',
-            period: 'Jul 2026 to now',
+            period: 'Jul to Sep 2026',
             points: [
                 'AI development and intelligent system simulation.',
-                'Applying machine learning and computer vision techniques to simulation frameworks.'
+                'Applied machine learning and computer vision techniques to simulation frameworks.'
             ],
             tags: ['Machine Learning', 'Computer Vision', 'Simulators']
         },
