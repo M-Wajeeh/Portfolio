@@ -177,6 +177,18 @@ export const portfolioData: PortfolioData = {
             tags: ['Public Speaking', 'Community']
         },
         {
+            id: 'siberkoza',
+            type: 'Internship',
+            title: 'AI/ML Engineer Intern',
+            company: 'SiberKoza Alpha (NASTP)',
+            period: 'Jul to Sep 2025',
+            points: [
+                'Developed end-to-end ML pipelines on 80K+ records, reaching 88% accuracy.',
+                'Covered ingestion, feature engineering, training, evaluation and deployment with Docker, MLflow and DVC.'
+            ],
+            tags: ['ML Pipelines', 'MLOps', 'Docker']
+        },
+        {
             id: 'degree',
             type: 'Education',
             title: 'BS Artificial Intelligence',
