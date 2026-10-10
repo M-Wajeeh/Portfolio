@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swatcat privacy policy | M. Wajeeh's notebook</title>
+  <meta name="description" content="Swatcat privacy policy. A gentle, open-source Chrome extension to keep social media time in check: local-first, zero network requests, zero tracking." />
+  <meta name="theme-color" content="#fbf8f0" />
+  <link rel="icon" type="image/png" href="/swatcat/icon-128.png" />
+  <script type="module" src="/src/privacy.ts"></script>
+</head>
+
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+  <div class="notebook">
+    <main id="main" class="policy">
+      <a href="/extensions/swatcat/" class="back hand">← back to Swatcat</a>
+      <p class="entry-cat">Privacy &amp; Transparency</p>
+      <h1 class="xp-title hand">
+        <img src="/swatcat/icon-128.png" alt="" class="xp-logo" width="128" height="128" />
+        Swatcat privacy policy
+      </h1>
+      <p class="policy-meta">Last updated: October 9, 2026 · Chrome Extension (Manifest V3) · 100% Local-First</p>
+
+      <h2 class="policy-h hand">Overview &amp; Core Guarantee</h2>
+      <p>
+        <strong>Swatcat</strong> is a free, open-source browser extension designed to help you keep your social media and screen time in check.
+        It is engineered from the ground up under a strict <strong>local-first, privacy-by-design</strong> architecture:
+        <strong>your personal information and browsing data never leave your device.</strong>
+      </p>
+      <p class="policy-note">Swatcat contains zero network requests, zero remote scripts, zero telemetry, and zero advertisements. All logic executes locally in your browser.</p>
+
+      <h2 class="policy-h hand">What Swatcat stores on your device</h2>
+      <p>Swatcat saves only the following operational data inside your browser's local extension storage (<code>chrome.storage.local</code>):</p>
+      <ul>
+        <li><strong>Your settings:</strong> Your chosen cat coat and custom name, the list of sites you chose to limit, your daily time limit, active schedule, reset hour, and preferences for the opening pause and sounds.</li>
+        <li><strong>Today's active time:</strong> The current calendar date and how many milliseconds you have actively spent focused on your chosen sites.</li>
+        <li><strong>Short history (last 7 days):</strong> Daily totals for approximately the past week, used strictly to render the trend chart inside the extension popup.</li>
+        <li><strong>Rewards &amp; status:</strong> Your streak of good days under budget, whether today is a happy day (triggering purrs &amp; hearts), and whether you have redeemed today's 5-minute extension.</li>
+      </ul>
+      <p class="policy-note">
+        <strong>What Swatcat does NOT record:</strong> Swatcat does not record URLs you browse, search queries, keystrokes, form inputs, or page content. To determine if a tab should be counted, it compares the tab's hostname in-memory against your custom list at that instant without persisting it.
+      </p>
+
+      <h2 class="policy-h hand">Blocking &amp; Redirection Behavior</h2>
+      <p>
+        When your daily limit is reached, Swatcat swats the active tab closed and redirects subsequent attempts to open your limited sites to a local extension page (<code>blocked.html</code>).
+      </p>
+      <p>
+        The address you were trying to access is passed to the local page after the <code>#</code> hash fragment (e.g. <code>blocked.html#https://...</code>) solely so the page can display the site's name and offer an exit button. That fragment is evaluated entirely in-browser, is never logged, and is never transmitted over any network.
+      </p>
+
+      <h2 class="policy-h hand">Data Sharing &amp; Third Parties</h2>
+      <p><strong>Nothing is shared.</strong></p>
+      <p>
+        Swatcat makes no network calls whatsoever. There are no analytics trackers, no crash reporting services, no external fonts or CDN dependencies, no user accounts, and no backend servers.
+      </p>
+      <p>
+        Your data is never collected, sold, rented, monetized, or transferred to anyone, including the extension creator.
+      </p>
+
+      <h2 class="policy-h hand">Chrome Permissions Explained</h2>
+      <p>Chrome Web Store requires explicit declarations for extension capabilities. Here is why each permission is required:</p>
+      <dl class="index-card perms">
+        <div>
+          <dt class="hand">storage</dt>
+          <dd>Saves your chosen cat preferences, daily time limit, site list, streak, and recent 7-day stats locally on your computer.</dd>
+        </div>
+        <div>
+          <dt class="hand">alarms</dt>
+          <dd>Saves active time once per minute and performs the automatic daily reset at your chosen hour when the background worker wakes up.</dd>
+        </div>
+        <div>
+          <dt class="hand">tabs</dt>
+          <dd>Reads the hostname of the active tab in the focused window to determine if time should count, and closes the tab when your time limit expires. Tab URLs are never stored.</dd>
+        </div>
+        <div>
+          <dt class="hand">declarativeNetRequest</dt>
+          <dd>Directs Chrome's native network engine to block and redirect restricted sites once your daily limit is hit, without requiring the extension to inspect or intercept your web traffic.</dd>
+        </div>
+        <div>
+          <dt class="hand">Host Permissions (*://*/*)</dt>
+          <dd>Allows the content script to display the animated cat in an isolated, closed Shadow DOM on pages you visit, and enables declarative blocking rules across sites you add to your custom limit list. Never used to read page text or data.</dd>
+        </div>
+      </dl>
+
+      <h2 class="policy-h hand">Your Control &amp; Data Deletion</h2>
+      <ul>
+        <li>You can inspect, adjust, or reset your site list, limits, and settings at any time in the <strong>Settings</strong> page.</li>
+        <li><strong>Uninstalling</strong> Swatcat automatically and permanently purges all stored preferences and time history from your device.</li>
+        <li>Swatcat is free and open-source under the <strong>MIT License</strong> — anyone can audit the source code to verify these privacy commitments.</li>
+      </ul>
+
+      <h2 class="policy-h hand">Contact</h2>
+      <p><strong>Questions or feedback about this privacy policy?</strong> Feel free to open an issue or reach out directly.</p>
+      <p class="policy-mail"><a href="mailto:contact@m-wajeeh.dev">contact@m-wajeeh.dev</a></p>
+
+      <p class="colophon">
+        <span>Swatcat Privacy Policy · Published at m-wajeeh.dev/extensions/swatcat/privacy-policy</span>
+        <a href="/" class="hand">back to the notebook →</a>
+      </p>
+    </main>
+  </div>
+</body>
+
+</html>

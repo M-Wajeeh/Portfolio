@@ -62,7 +62,30 @@ export interface Project {
     /** Optional: several repos under one entry */
     repos?: { label: string; url: string }[];
     /** Optional: screenshots, taped into the entry */
-    shots?: { src: string; alt: string }[];
+    shots?: Shot[];
+    /** Optional: the project's own page, at /extensions/<slug>/ */
+    page?: ProjectPage;
+}
+
+export interface Shot {
+    src: string;
+    alt: string;
+    /** Optional: pixel size, when it isn't the usual 960 x 600 */
+    width?: number;
+    height?: number;
+}
+
+/** A full notebook entry on its own page */
+export interface ProjectPage {
+    slug: string;
+    /** Walkthrough, one screenshot per step */
+    steps: { title: string; text: string; shot?: Shot; note?: string }[];
+    /** Browser permissions, each with why it's needed */
+    permissions?: { name: string; why: string }[];
+    /** Privacy in a sentence or two; the full policy lives at privacyUrl */
+    privacy: string;
+    /** Optional: a red rubber stamp beside the privacy note, top line / big word / bottom line */
+    stamp?: [string, string, string];
 }
 
 export interface PortfolioData {
@@ -98,7 +121,7 @@ export const portfolioData: PortfolioData = {
     },
 
     facts: [
-        { label: "Now", value: "AI Intern, CESAI, CEME NUST" },
+        { label: "Interned", value: "AI Intern, CESAI, CEME NUST, 2026" },
         { label: "Record", value: "1st of 580+, Vyrothon 2026" },
         { label: "Degree", value: "BS Artificial Intelligence, NUML, 2026" },
         { label: "Focus", value: "MLOps, LLM agents, RAG" }
@@ -120,10 +143,10 @@ export const portfolioData: PortfolioData = {
             type: 'Internship',
             title: 'AI Intern',
             company: 'CESAI (Center of Excellence for Simulators and AI), CEME NUST, Rawalpindi',
-            period: 'Jul 2026 to now',
+            period: 'Jul to Sep 2026',
             points: [
                 'AI development and intelligent system simulation.',
-                'Applying machine learning and computer vision techniques to simulation frameworks.'
+                'Applied machine learning and computer vision techniques to simulation frameworks.'
             ],
             tags: ['Machine Learning', 'Computer Vision', 'Simulators']
         },
@@ -152,6 +175,18 @@ export const portfolioData: PortfolioData = {
                 'Focused on turning hackathon prototypes into real-world AI applications.'
             ],
             tags: ['Public Speaking', 'Community']
+        },
+        {
+            id: 'siberkoza',
+            type: 'Internship',
+            title: 'AI/ML Engineer Intern',
+            company: 'SiberKoza Alpha (NASTP)',
+            period: 'Jul to Sep 2025',
+            points: [
+                'Developed end-to-end ML pipelines on 80K+ records, reaching 88% accuracy.',
+                'Covered ingestion, feature engineering, training, evaluation and deployment with Docker, MLflow and DVC.'
+            ],
+            tags: ['ML Pipelines', 'MLOps', 'Docker']
         },
         {
             id: 'degree',
@@ -242,8 +277,9 @@ export const portfolioData: PortfolioData = {
             pipeline: ['Open a feed', '5-second pause', 'Shared daily limit', 'Cat warns', 'Swat closes tab'],
             tags: ['JavaScript', 'Manifest V3', 'declarativeNetRequest', 'Shadow DOM', 'E2E tests', 'MIT'],
             githubUrl: '',
-            status: 'In review',
-            privacyUrl: '/swatcat/privacy.html',
+            status: 'Shipped v1',
+            storeUrl: 'https://chromewebstore.google.com/detail/swatcat/fbkfchmfhdcgfgcmcplkggkbdjhohele',
+            privacyUrl: '/extensions/swatcat/privacy-policy/',
             logoImg: '/swatcat/icon-128.png',
             shots: [
                 { src: '/swatcat/shots/pause.webp', alt: 'Swatcat asking "Still want to go in?" with a five-second countdown before a social site opens' },
@@ -253,7 +289,49 @@ export const portfolioData: PortfolioData = {
             highlights: [
                 'Animated SVG cat lives in a closed Shadow DOM, so it never breaks host pages.',
                 'One limit shared across sites via declarativeNetRequest; no browsing traffic is inspected.'
-            ]
+            ],
+            page: {
+                slug: 'swatcat',
+                steps: [
+                    {
+                        title: 'Pick your cat and give it a name',
+                        text: 'Six cats to choose from: ginger tabby, grey tabby, tuxedo, calico, Siamese and snow white. Every one naps, grooms, sulks and swats.',
+                        shot: { src: '/swatcat/shots/step-pick.webp', width: 960, height: 458, alt: 'Swatcat setup: six cats to pick from and a field to name yours' }
+                    },
+                    {
+                        title: 'It wanders your pages',
+                        text: 'The cat lives on the sites you chose to limit, and gets more insistent as your daily limit runs out.',
+                        shot: { src: '/swatcat/shots/step-wander.webp', width: 960, height: 496, alt: 'A ginger cat napping on a social feed with a speech bubble saying "it\'s been a while..."' }
+                    },
+                    {
+                        title: 'It asks before you go in',
+                        text: 'A five-second pause before a social site opens, with how much of today\'s limit you have used. Often, that\'s enough.',
+                        shot: { src: '/swatcat/shots/step-pause.webp', width: 960, height: 496, alt: 'Swatcat asking "Still want to go in?" with a five-second countdown before a social site opens' },
+                        note: '5 seconds'
+                    },
+                    {
+                        title: 'Your day and your week at a glance',
+                        text: 'The popup shows time left today, a 7-day chart of good days and your streak. You can pause tracking: it stops the clock but doesn\'t lift a block, and the cat sulks.',
+                        shot: { src: '/swatcat/shots/step-popup.webp', width: 440, height: 690, alt: 'Swatcat popup: 42 minutes left today, a seven-day bar chart and a streak of 3 good days' },
+                        note: 'the cat sulks'
+                    },
+                    {
+                        title: 'At the limit: one swat',
+                        text: 'The tab closes and the site stays blocked until the daily reset. Once a day you can ask for five more minutes.',
+                        shot: { src: '/swatcat/shots/step-swat.webp', width: 960, height: 496, alt: `Swatcat's "Time's up for today" screen after the daily limit closes the tab` },
+                        note: '+5 min, once a day'
+                    }
+                ],
+                permissions: [
+                    { name: 'storage', why: 'Keeps your cat, site list, daily limit, streak and the last 7 days on your computer.' },
+                    { name: 'alarms', why: 'Saves active time once a minute and runs the daily reset at the hour you pick.' },
+                    { name: 'tabs', why: 'Reads the active tab\'s hostname to decide if time counts, and closes the tab at the limit. URLs are never stored.' },
+                    { name: 'declarativeNetRequest', why: 'Lets Chrome itself block your limited sites at the limit, so the extension never reads your traffic.' },
+                    { name: 'all sites', why: 'Shows the cat in a closed Shadow DOM on the pages you visit. Never used to read page text.' }
+                ],
+                privacy: 'Zero network requests, remote scripts, telemetry or ads. Swatcat never records the URLs you visit, your searches or what you type; everything it keeps stays in your browser, and uninstalling deletes all of it.',
+                stamp: ['zero', 'network', 'requests']
+            }
         },
         {
             title: 'TabChest',
@@ -265,12 +343,98 @@ export const portfolioData: PortfolioData = {
             githubUrl: '',
             status: 'Shipped v1',
             storeUrl: 'https://chromewebstore.google.com/detail/tabchest/hgggkkijegbpooajfcopaclabingkfgk',
-            privacyUrl: '/tabchest/privacy.html',
+            privacyUrl: '/extensions/tabchest/privacy-policy/',
             role: 'Solo: architecture, development, licensing',
+            shots: [
+                { src: '/tabchest/shots/workspaces.webp', alt: 'TabChest popup showing saved tab workspaces ready to restore in one click' },
+                { src: '/tabchest/shots/save.webp', alt: 'TabChest selector allowing you to choose and save tabs across windows' }
+            ],
             highlights: [
                 'Saves any selection of tabs, across windows, including pinned tabs.',
                 'Import merges by name; rename and delete come with undo.'
-            ]
+            ],
+            page: {
+                slug: 'tabchest',
+                steps: [
+                    {
+                        title: 'Pick the tabs to keep',
+                        text: 'Save this window, every window, or hand-pick tabs one by one, pinned tabs included. Name the set after the project it belongs to.',
+                        shot: { src: '/tabchest/shots/step-save.webp', width: 519, height: 560, alt: 'TabChest popup with a workspace being named and five tabs from this window checked to save' },
+                        note: 'up to 50 tabs on Free'
+                    },
+                    {
+                        title: 'Close them. Get them back in a click',
+                        text: 'Every set becomes a named workspace you can search. Restoring brings the whole project back, across multiple windows, exactly as you left it.',
+                        shot: { src: '/tabchest/shots/step-restore.webp', width: 519, height: 560, alt: 'TabChest popup listing saved workspaces with their tab counts, windows and when they were saved' },
+                        note: '10 workspaces free'
+                    },
+                    {
+                        title: 'Keep a backup',
+                        text: 'Export your workspaces to JSON and keep an offline copy. Importing merges by name, and rename and delete come with undo.'
+                    }
+                ],
+                permissions: [
+                    { name: 'tabs', why: 'Reads the URL, title, icon and pinned state of the tabs you save, so a workspace can be restored.' },
+                    { name: 'storage', why: 'Keeps your workspaces and settings on your device, in IndexedDB and extension storage.' },
+                    { name: 'lemonsqueezy.com', why: 'Only if you activate Pro: checks your license key. No tab URLs, titles or workspace content are sent.' }
+                ],
+                privacy: 'Your workspaces stay on your device; TabChest has no backend holding your tabs or history. The one exception is optional: activating Pro sends your license key, and only that, to Lemon Squeezy to validate it. Uninstalling removes all local data.',
+                stamp: ['your tabs', 'stay', 'local']
+            }
+        },
+        {
+            title: 'Smart Reader',
+            note: 'the tl;dr never leaves your laptop',
+            category: 'Chrome extension · On-device AI reading',
+            summary: 'Turns any article into a clean reading view with a TL;DR, key points and highlights saved to a personal library. Summaries run on your device; nothing leaves the browser.',
+            pipeline: ['Open article', 'Extract article', 'Clean reader', 'On-device summary', 'Highlight & save'],
+            tags: ['JavaScript', 'Manifest V3', 'Chrome Summarizer API', 'Mozilla Readability', 'Shadow DOM', 'Lemon Squeezy'],
+            githubUrl: '',
+            status: 'In review',
+            // storeUrl: 'https://chromewebstore.google.com/detail/...', // Add "see it in the store →" URL here once approved
+            privacyUrl: '/extensions/smart-reader/privacy-policy/',
+            role: 'Solo: idea, design, development, licensing',
+            shots: [
+                { src: '/smart-reader/shots/before-after.webp', alt: 'A cluttered news page before, and the same article after in Smart Reader with a TL;DR and key points' },
+                { src: '/smart-reader/shots/library.webp', alt: 'Smart Reader library listing saved articles with their highlights, search and Markdown export' }
+            ],
+            highlights: [
+                "Summarizes with Chrome's built-in Gemini Nano, falling back to an extractive sentence ranker that skips headings, captions and footnotes.",
+                'Reader lives in a closed Shadow DOM; highlights re-anchor by text and position when you return to an article.'
+            ],
+            page: {
+                slug: 'smart-reader',
+                steps: [
+                    {
+                        title: 'One click, and the clutter is gone',
+                        text: 'Click the icon, use the shortcut or pick it from the right-click menu, and any article opens in a calm, distraction-free reading view.',
+                        shot: { src: '/smart-reader/shots/step-clean.webp', width: 960, height: 456, alt: 'A cluttered news page with ads and a cookie banner, next to the same article in Smart Reader' }
+                    },
+                    {
+                        title: 'Know what it says before you read it',
+                        text: "A TL;DR, key points and reading time sit at the top of every article, made on your device by Chrome's built-in AI or a local algorithm.",
+                        shot: { src: '/smart-reader/shots/step-tldr.webp', width: 960, height: 514, alt: 'Smart Reader showing a TL;DR and five key points above an article' },
+                        note: 'made on your device'
+                    },
+                    {
+                        title: 'Highlight what matters',
+                        text: 'Select any text to keep it. Your highlights are there when you come back to the article.',
+                        shot: { src: '/smart-reader/shots/step-highlight.webp', width: 960, height: 514, alt: 'An article in Smart Reader on a sepia page with one sentence highlighted in yellow' }
+                    },
+                    {
+                        title: 'Everything you saved, in one place',
+                        text: 'Search titles, summaries and highlights in your reading library, and export it to Markdown for Obsidian or Notion.',
+                        shot: { src: '/smart-reader/shots/step-library.webp', width: 960, height: 514, alt: 'My Reading Library: saved articles with their highlights, a search box and Export Markdown' }
+                    },
+                    {
+                        title: 'Easy on the eyes, day or night',
+                        text: 'Light, sepia and dark themes, with adjustable text size.',
+                        shot: { src: '/smart-reader/shots/step-dark.webp', width: 960, height: 514, alt: 'Smart Reader in its dark theme, with key points and a highlighted sentence' }
+                    }
+                ],
+                privacy: "Summaries are made on your device, and page content is never sent to a server. Saved articles and highlights stay in your browser, with no analytics or ads. The one exception is optional: with Pro, your license key goes to Lemon Squeezy about once a week to confirm it's valid.",
+                stamp: ['made on', 'your', 'device']
+            }
         }
     ],
 };

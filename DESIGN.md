@@ -27,4 +27,6 @@ The portfolio is a personal engineering notebook, deliberately the opposite of a
 
 ## Content rules
 - No em dashes. Each project needs `pipeline` steps, a short factual `note`, and optionally `loopTo` (index the last step loops back to). Keep notes factual; no invented opinions. Optional `repos` lists several code links under one entry; optional `shots` tapes screenshots into an entry.
+- An extension with a `page` gets its own notebook entry at `/extensions/<slug>/`: header with a "try it" sticky note, the system sketch, a numbered walkthrough of taped screenshots, and what it asks Chrome for. Each page is its own HTML file (listed in `vite.config.ts`) so it has its own title and link preview; walkthrough screenshots are cropped so they carry no store headings of their own.
+- Privacy policies live at `/extensions/<slug>/privacy-policy/` (plain HTML in the notebook style). The old `/<slug>/privacy.html` addresses in `public/` only forward there; keep them until every store listing points to the new URL. Their wording is the reviewed policy text: restyle freely, but change the words only on purpose and bump "Last updated" when you do.
 - Fonts are self-hosted (@fontsource); no italic is loaded, so don't use `font-style: italic`.
