@@ -267,7 +267,7 @@ export const portfolioData: PortfolioData = {
             githubUrl: '',
             status: 'Shipped v1',
             storeUrl: 'https://chromewebstore.google.com/detail/swatcat/fbkfchmfhdcgfgcmcplkggkbdjhohele',
-            privacyUrl: '/swatcat/privacy.html',
+            privacyUrl: '/extensions/swatcat/privacy-policy/',
             logoImg: '/swatcat/icon-128.png',
             shots: [
                 { src: '/swatcat/shots/pause.webp', alt: 'Swatcat asking "Still want to go in?" with a five-second countdown before a social site opens' },
@@ -331,7 +331,7 @@ export const portfolioData: PortfolioData = {
             githubUrl: '',
             status: 'Shipped v1',
             storeUrl: 'https://chromewebstore.google.com/detail/tabchest/hgggkkijegbpooajfcopaclabingkfgk',
-            privacyUrl: '/tabchest/privacy.html',
+            privacyUrl: '/extensions/tabchest/privacy-policy/',
             role: 'Solo: architecture, development, licensing',
             shots: [
                 { src: '/tabchest/shots/workspaces.webp', alt: 'TabChest popup showing saved tab workspaces ready to restore in one click' },
@@ -380,7 +380,7 @@ export const portfolioData: PortfolioData = {
             githubUrl: '',
             status: 'In review',
             // storeUrl: 'https://chromewebstore.google.com/detail/...', // Add "see it in the store →" URL here once approved
-            privacyUrl: '/smart-reader/privacy.html',
+            privacyUrl: '/extensions/smart-reader/privacy-policy/',
             role: 'Solo: idea, design, development, licensing',
             shots: [
                 { src: '/smart-reader/shots/before-after.webp', alt: 'A cluttered news page before, and the same article after in Smart Reader with a TL;DR and key points' },
@@ -389,7 +389,40 @@ export const portfolioData: PortfolioData = {
             highlights: [
                 "Summarizes with Chrome's built-in Gemini Nano, falling back to an extractive sentence ranker that skips headings, captions and footnotes.",
                 'Reader lives in a closed Shadow DOM; highlights re-anchor by text and position when you return to an article.'
-            ]
+            ],
+            page: {
+                slug: 'smart-reader',
+                steps: [
+                    {
+                        title: 'One click, and the clutter is gone',
+                        text: 'Click the icon, use the shortcut or pick it from the right-click menu, and any article opens in a calm, distraction-free reading view.',
+                        shot: { src: '/smart-reader/shots/step-clean.webp', width: 960, height: 456, alt: 'A cluttered news page with ads and a cookie banner, next to the same article in Smart Reader' }
+                    },
+                    {
+                        title: 'Know what it says before you read it',
+                        text: "A TL;DR, key points and reading time sit at the top of every article, made on your device by Chrome's built-in AI or a local algorithm.",
+                        shot: { src: '/smart-reader/shots/step-tldr.webp', width: 960, height: 514, alt: 'Smart Reader showing a TL;DR and five key points above an article' },
+                        note: 'made on your device'
+                    },
+                    {
+                        title: 'Highlight what matters',
+                        text: 'Select any text to keep it. Your highlights are there when you come back to the article.',
+                        shot: { src: '/smart-reader/shots/step-highlight.webp', width: 960, height: 514, alt: 'An article in Smart Reader on a sepia page with one sentence highlighted in yellow' }
+                    },
+                    {
+                        title: 'Everything you saved, in one place',
+                        text: 'Search titles, summaries and highlights in your reading library, and export it to Markdown for Obsidian or Notion.',
+                        shot: { src: '/smart-reader/shots/step-library.webp', width: 960, height: 514, alt: 'My Reading Library: saved articles with their highlights, a search box and Export Markdown' }
+                    },
+                    {
+                        title: 'Easy on the eyes, day or night',
+                        text: 'Light, sepia and dark themes, with adjustable text size.',
+                        shot: { src: '/smart-reader/shots/step-dark.webp', width: 960, height: 514, alt: 'Smart Reader in its dark theme, with key points and a highlighted sentence' }
+                    }
+                ],
+                privacy: "Summaries are made on your device, and page content is never sent to a server. Saved articles and highlights stay in your browser, with no analytics or ads. The one exception is optional: with Pro, your license key goes to Lemon Squeezy about once a week to confirm it's valid.",
+                stamp: ['made on', 'your', 'device']
+            }
         }
     ],
 };
