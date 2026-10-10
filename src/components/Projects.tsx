@@ -83,7 +83,7 @@ const Projects = () => {
                 <Mark type="box" padding={6}>Side quests: browser extensions</Mark>
             </h3>
             <p className="section-lede">
-                I also build Chrome extensions on my own: {extensionProjects.map(p => p.title).join(', ').replace(/, ([^,]*)$/, ' and $1')}. They have their own pages.
+                I also build Chrome extensions on my own: {extensionProjects.map(p => p.title).join(', ').replace(/, ([^,]*)$/, ' and $1')}.
             </p>
             <p className="entry-links">
                 <a href="/extensions/" className="pen-link hand">see the extensions →</a>
