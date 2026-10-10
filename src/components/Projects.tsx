@@ -74,7 +74,7 @@ const Projects = () => {
                 <Mark type="underline">Things I've built</Mark>
             </h2>
             <p className="section-lede">
-                Each one with a quick sketch of how it works. AI and ML systems first, then the browser extensions I shipped.
+                Each one with a quick sketch of how it works.
             </p>
 
             {aiProjects.map((p, i) => <Entry key={p.title} p={p} n={i + 1} />)}
@@ -82,10 +82,12 @@ const Projects = () => {
             <h3 className="subsection hand">
                 <Mark type="box" padding={6}>Side quests: browser extensions</Mark>
             </h3>
-            <p className="entry-links">
-                <a href="/extensions/" className="pen-link hand">all the extensions on one page →</a>
+            <p className="section-lede">
+                I also build Chrome extensions on my own: {extensionProjects.map(p => p.title).join(', ').replace(/, ([^,]*)$/, ' and $1')}. They have their own pages.
             </p>
-            {extensionProjects.map((p, i) => <Entry key={p.title} p={p} n={aiProjects.length + i + 1} />)}
+            <p className="entry-links">
+                <a href="/extensions/" className="pen-link hand">see the extensions →</a>
+            </p>
         </section>
     );
 };
