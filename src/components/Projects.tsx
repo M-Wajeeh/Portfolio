@@ -46,6 +46,11 @@ const Entry = ({ p, n }: { p: Project; n: number }) => {
                             {p.storeUrl ? 'see it in the store →' : 'read the code →'}
                         </a>
                     )}
+                    {p.buyUrl && (
+                        <a href={p.buyUrl} target="_blank" rel="noopener noreferrer" className="pen-link hand">
+                            {p.buyLabel ?? 'Get Pro · $9.99'} →
+                        </a>
+                    )}
                     {p.repos?.map(r => (
                         <a key={r.url} href={r.url} target="_blank" rel="noopener noreferrer" className="pen-link hand">
                             {r.label} code →

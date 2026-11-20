@@ -45,6 +45,11 @@ const ExtensionsIndex = () => (
                                         {p.storeUrl && (
                                             <a href={p.storeUrl} target="_blank" rel="noopener noreferrer" className="pen-link hand">see it in the store →</a>
                                         )}
+                                        {p.buyUrl && (
+                                            <a href={p.buyUrl} target="_blank" rel="noopener noreferrer" className="pen-link hand">
+                                                {p.buyLabel ?? 'Get Pro · $9.99'} →
+                                            </a>
+                                        )}
                                         {p.privacyUrl && <a href={p.privacyUrl} className="pen-link hand">privacy policy →</a>}
                                     </p>
                                 </div>

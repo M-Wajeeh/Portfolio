@@ -35,6 +35,11 @@ const ExtensionPage = ({ slug }: { slug: string }) => {
                                 {p.storeUrl
                                     ? <a href={p.storeUrl} target="_blank" rel="noopener noreferrer" className="hand">→ add it to Chrome</a>
                                     : <p className="hand sticky-wait">in review at the Chrome Web Store</p>}
+                                {p.buyUrl && (
+                                    <a href={p.buyUrl} target="_blank" rel="noopener noreferrer" className="hand">
+                                        → {p.buyLabel ?? 'Get Pro · $9.99'}
+                                    </a>
+                                )}
                                 {p.privacyUrl && <a href={p.privacyUrl} className="hand">→ privacy policy</a>}
                             </div>
                             <p className="note xp-note hand">

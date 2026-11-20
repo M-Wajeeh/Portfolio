@@ -19,7 +19,7 @@
       <a href="/extensions/tabchest/" class="back hand">← back to TabChest</a>
       <p class="entry-cat">Legal</p>
       <h1 class="xp-title hand">TabChest privacy policy</h1>
-      <p class="policy-meta">Last updated: October 9, 2026 · Browser Extension</p>
+      <p class="policy-meta">Last updated: November 20, 2026 · TabChest v1.0.2 · 100% Local-First</p>
 
       <h2 class="policy-h hand">What data TabChest uses</h2>
       <p>TabChest uses the following browser data only to provide its core features:</p>
@@ -38,23 +38,39 @@
       <p>TabChest does <strong>not</strong> sell your data.</p>
       <p>TabChest only sends data to a third party in one optional case:</p>
       <ul>
-        <li>If you activate TabChest Pro, the <strong>license key</strong> you enter is sent to Lemon Squeezy's license API to validate your purchase.</li>
+        <li>If you activate TabChest Pro, your <strong>license key</strong> (format: <code>TABCHEST-XXXX</code>) and an anonymous device identifier are sent to Polar (<code>https://api.polar.sh/*</code>) to validate your purchase (enforcing a 3-device limit).</li>
       </ul>
-      <p class="policy-note">No tab URLs, tab titles, or workspace content are sent for license validation.</p>
+      <p class="policy-note">No tab URLs, tab titles, or workspace contents are ever sent for license validation.</p>
 
       <h2 class="policy-h hand">Permissions explained</h2>
       <dl class="index-card perms">
         <div>
           <dt class="hand">tabs</dt>
-          <dd>Required to read selected tab info so workspaces can be saved and restored.</dd>
+          <dd>Required to read selected tab info (URL, title, pinned state) so workspaces can be saved and restored.</dd>
         </div>
         <div>
           <dt class="hand">storage</dt>
-          <dd>Required to save your workspaces and settings locally.</dd>
+          <dd>Required to save your workspaces and preferences locally in IndexedDB and extension storage.</dd>
         </div>
         <div>
-          <dt class="hand">*.lemonsqueezy.com</dt>
-          <dd>Required only for optional Pro license activation.</dd>
+          <dt class="hand">alarms</dt>
+          <dd>Used for optional weekly backup reminders in Pro and periodic maintenance tasks locally.</dd>
+        </div>
+        <div>
+          <dt class="hand">notifications</dt>
+          <dd>Used to show alerts when automated weekly backup reminders trigger.</dd>
+        </div>
+        <div>
+          <dt class="hand">favicon</dt>
+          <dd>Required to display site icons next to saved tabs for quick visual recognition.</dd>
+        </div>
+        <div>
+          <dt class="hand">contextMenus</dt>
+          <dd>Adds right-click options to save active tabs or windows directly to a workspace.</dd>
+        </div>
+        <div>
+          <dt class="hand">https://api.polar.sh/*</dt>
+          <dd>Used strictly to verify optional TABCHEST-XXXX Pro license keys and device activations (3-device limit).</dd>
         </div>
       </dl>
 
@@ -67,8 +83,12 @@
       </ul>
 
       <h2 class="policy-h hand">Contact</h2>
-      <p>Privacy questions? Reach out directly.</p>
-      <p class="policy-mail"><a href="mailto:contact@m-wajeeh.dev">contact@m-wajeeh.dev</a></p>
+      <p>Privacy questions or support? Reach out directly.</p>
+      <p class="policy-mail">
+        <a href="mailto:contact@m-wajeeh.dev">contact@m-wajeeh.dev</a>
+        <br />
+        <a href="mailto:wajeeh1472@gmail.com" style="font-size: 0.85em; opacity: 0.85;">wajeeh1472@gmail.com</a>
+      </p>
 
       <p class="colophon">
         <span>Published at m-wajeeh.dev/extensions/tabchest/privacy-policy</span>

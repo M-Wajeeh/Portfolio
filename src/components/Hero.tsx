@@ -4,6 +4,7 @@ import { Mark, Doodle } from './Hand';
 
 const Hero = () => {
     const { shortName, name, role, intro, resumePrimaryUrl, resumePrimaryLabel, resumeSecondaryUrl, resumeSecondaryLabel } = portfolioData.personalInfo;
+    const [lead, ...rest] = intro.split(/(?<=\.)\s+/);
 
     return (
         <section id="top" className="cover">
@@ -14,7 +15,7 @@ const Hero = () => {
                     <span>I build ML systems that <Mark type="underline" delay={500}>actually ship.</Mark></span>
                 </h1>
                 <p className="cover-intro">
-                    <strong>{name}.</strong> {intro}
+                    <strong>{lead}</strong> {rest.join(' ')}
                 </p>
 
                 <dl className="index-card">

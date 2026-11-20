@@ -21,7 +21,7 @@ const Contact = () => {
                 <a href={resumePrimaryUrl} target="_blank" rel="noopener noreferrer" className="pen-link hand">Résumé →</a>
             </p>
             <p className="colophon">
-                <span>© {new Date().getFullYear()} {name}</span>
+                <span>© {new Date().getFullYear()} {name} · extension support: <a href="mailto:contact@m-wajeeh.dev" className="hand">contact@m-wajeeh.dev</a></span>
                 <span className="hand">{status.toLowerCase()} ✓</span>
             </p>
         </footer>
