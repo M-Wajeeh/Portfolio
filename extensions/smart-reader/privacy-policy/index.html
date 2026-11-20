@@ -19,23 +19,44 @@
       <a href="/extensions/smart-reader/" class="back hand">← back to Smart Reader</a>
       <p class="entry-cat">Legal</p>
       <h1 class="xp-title hand">Smart Reader privacy policy</h1>
-      <p class="policy-meta">Last updated: October 9, 2026 · Browser Extension</p>
+      <p class="policy-meta">Last updated: November 20, 2026 · Smart Reader v0.3.0 · 100% Local-First</p>
 
-      <h2 class="policy-h hand">Overview</h2>
-      <p>Smart Reader does not collect, sell, or send your data anywhere.</p>
+      <h2 class="policy-h hand">Overview &amp; Core Guarantee</h2>
+      <p>Smart Reader does not collect, track, sell, or send your data anywhere.</p>
+      <p class="policy-note">All article extraction, reading views, and AI summaries execute directly on your computer. Zero page text or personal notes are uploaded to any remote server.</p>
 
       <h2 class="policy-h hand">Data &amp; Privacy Practices</h2>
       <ul>
-        <li><strong>What is stored:</strong> articles you choose to save (title, link, site name, reading time, summary) and your highlights. These are stored locally in your browser using Chrome's storage. Your reader settings (theme, font size) are stored with Chrome sync storage so they follow your Chrome profile.</li>
-        <li><strong>Summaries:</strong> generated on your device, either by Chrome's built-in AI or by a local algorithm. Page content is not sent to any server.</li>
-        <li><strong>Page access:</strong> Smart Reader only reads a page when you click its icon, use its shortcut, or choose it from the right-click menu.</li>
-        <li><strong>License checks (Pro only):</strong> if you activate Pro, your license key is sent to Lemon Squeezy (our payment provider) to confirm it's valid, about once a week. The name and email on your purchase are stored locally to show who the license belongs to.</li>
-        <li><strong>No tracking:</strong> no analytics, no ads, no third-party services apart from the license check above.</li>
-        <li><strong>Deleting data:</strong> delete items from the library, or remove the extension to erase everything.</li>
+        <li><strong>On-demand page access:</strong> Smart Reader only reads a page when you explicitly click its icon, use its shortcut, or choose it from the right-click menu.</li>
+        <li><strong>Local on-device summaries:</strong> Generated on your device, either by Chrome's built-in AI (Gemini Nano) or by a local algorithm. Page content is never sent to any server.</li>
+        <li><strong>What is stored locally:</strong> Articles you choose to save (title, link, site name, reading time, summary) and your highlights. These are stored locally in your browser using Chrome's storage. Your reader settings (theme, font size) use Chrome sync storage so they follow your Chrome profile.</li>
+        <li><strong>License checks (Pro only):</strong> If you activate Pro, your license key (format: <code>SMARTREADER-XXXX</code>) and an anonymous device ID are sent to Polar (<code>https://api.polar.sh/*</code>) to confirm it is valid (enforcing a 3-device limit). No article URLs, titles, highlights, or summaries are ever shared.</li>
+        <li><strong>No tracking:</strong> Zero analytics, zero ads, and zero third-party telemetry apart from the optional license check above.</li>
+        <li><strong>Deleting data:</strong> Delete items from the library at any time, or remove the extension to erase everything.</li>
       </ul>
 
+      <h2 class="policy-h hand">Permissions explained</h2>
+      <dl class="index-card perms">
+        <div>
+          <dt class="hand">activeTab</dt>
+          <dd>Grants access to extract article text on the active tab only when you deliberately open Smart Reader.</dd>
+        </div>
+        <div>
+          <dt class="hand">storage</dt>
+          <dd>Required to store saved articles, highlights, and reader preferences locally in your browser.</dd>
+        </div>
+        <div>
+          <dt class="hand">contextMenus</dt>
+          <dd>Provides a convenient right-click shortcut to open the current page in reader view.</dd>
+        </div>
+        <div>
+          <dt class="hand">https://api.polar.sh/*</dt>
+          <dd>Used strictly to verify optional SMARTREADER-XXXX Pro license keys and manage the 3-device limit.</dd>
+        </div>
+      </dl>
+
       <h2 class="policy-h hand">Contact</h2>
-      <p>Privacy questions? Reach out directly.</p>
+      <p>Privacy questions or feedback? Reach out directly.</p>
       <p class="policy-mail"><a href="mailto:contact@m-wajeeh.dev">contact@m-wajeeh.dev</a></p>
 
       <p class="colophon">
