@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "/tabchest/buy",
+      "destination": "https://buy.polar.sh/polar_cl_m5PRXNN6e1vlBKCDtYJIyztMnPQIoBHaWgN7c07WnJ6",
+      "permanent": false
+    },
+    {
+      "source": "/smart-reader/buy",
+      "destination": "https://buy.polar.sh/polar_cl_yjpl6Dbj0ynjIvVSxKdfwT7ntaPNKaCmnebl44cPk0H",
+      "permanent": false
+    },
+    {
+      "source": "/tabchest/privacy.html",
+      "destination": "/extensions/tabchest/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/smart-reader/privacy.html",
+      "destination": "/extensions/smart-reader/privacy-policy/",
+      "permanent": true
+    }
+  ]
+}
